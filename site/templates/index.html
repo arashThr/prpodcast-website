@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/custom.css">
+
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+
+  <div class="main">
+    <section class="intro">
+      <header>
+        <h1>Welcome to PR Podcast</h1>
+      </header>
+      <p>PR podcast is an <strong>interview podcast with open source creators</strong>.</p>
+      <p>You can listen to each episode in our <a href="https://t.me/prpodcast">Telegram channel</a> or you can
+        subscribe to our mailing list to receive an
+        email after each episode is published.</p>
+
+      <div class="email-form">
+        <form action="/subscribe" method="get" onsubmit="return captureSubscribe()">
+          <input type="text" id="email-addr" name="email-addr" value="Email" onclick="clearEmail()">
+          <input type="submit" id="subscribe-button" value="Subscribe">
+        </form>
+      </div>
+
+      <p>
+        For updates and news, follow PR Podcast on <a href="https://twitter.com/PRPodcast01/">Twitter</a>.
+      </p>
+    </section>
+
+    <section class="episodes">
+      <header>
+        <h2>List of episodes</h2>
+      </header>
+      <ul class="ep-listing">
+
+      % for (let ep of episodes) {
+        <li class="episode">
+          <div class="ep-title">
+            <a href="${ep.githubAddress}"><code>${ep.title}</code></a>
+            <hr class="hr-list">
+            <time class="time publish-date">${ep.releaseDate}</time>
+          </div>
+          <div class="ep-desc">
+            ${ep.description}
+            <a class="ep-link" href="${ep.url}">Listen</a>
+          </div>
+        </li>
+        % }
+
+      </ul>
+    </section>
+
+  </div>
+
+  <footer style="background-color: #111; color: aliceblue;">
+    <!-- incite a riot: http://24ways.org/2009/incite-a-riot -->
+    PR Podcast is created by: <em>Arash Taher</em> and <em>Mehdi Moozeh</em>
+
+  </footer>
+
+
+  <script src="js/main.js"></script>
+  <!-- Analytics -->
+</body>
+
+</html>

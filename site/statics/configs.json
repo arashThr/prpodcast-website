@@ -1,0 +1,15 @@
+{
+    "site": {
+        "lang": "en",
+        "url": "prpodcast.net",
+        "baseurl": "prpodcast.net",
+        "title": "PR Podcast",
+        "tagline": "PR Podcast, open source stories",
+        "description": "Interviews with open source world creators",
+        "keywords": "open source, interview, programming",
+        "author": {
+            "name": "Arash",
+            "email": "arashThr@outlook.com"
+        }
+    }
+}

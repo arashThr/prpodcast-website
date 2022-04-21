@@ -1,0 +1,40 @@
+/* My custom CSS */
+
+.main {
+  margin: 0 auto;
+  max-width: 50em;
+  line-height: 1.5;
+  padding: 2em 1em 2em 1em;
+}
+
+.email-form {
+  display: flex;
+}
+
+ul.ep-listing {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.hr-list {
+  flex: 1;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  border-top: 1px dotted #ccc;
+}
+
+.episode {
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.ep-title {
+  display: flex;
+  align-items: baseline;
+}
+
+.ep-desc {
+  display: flex;
+  justify-content: space-between;
+}

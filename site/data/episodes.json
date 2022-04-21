@@ -1,0 +1,68 @@
+[
+    {
+        "cover": "/covers/ep06.jpg",
+        "releaseDate": "August 14, 2021",
+        "duration": "25:27",
+        "title": "icono",
+        "description": "One tag One icon, no font or svg, Pure CSS.",
+        "audioFile": "archive.org/download/saeed_episode_6/saeed_episode_6.mp3",
+        "githubAddress": "github.com/saeedalipoor/icono",
+        "url": "https://t.me/prpodcast/22",
+        "keywords": ["css", "github"]
+    },
+    {
+        "cover": "/covers/ep05.jpg",
+        "releaseDate": "July 11, 2021",
+        "duration": "29:51",
+        "title": "art",
+        "description": "ASCII art library for Python.",
+        "audioFile": "archive.org/download/episode5_sepand_final/episode5_sepand_final.mp3",
+        "githubAddress": "github.com/sepandhaghighi/art",
+        "url": "https://t.me/prpodcast/20",
+        "keywords": ["python", "github"]
+    },
+    {
+        "cover": "/covers/ep04.jpg",
+        "releaseDate": "June 26, 2021",
+        "duration": "27:31",
+        "title": "kutt",
+        "description": "Free Modern URL Shortener.",
+        "audioFile": "archive.org/download/episode4_pouria_final/episode4_pouria_final.mp3",
+        "githubAddress": "github.com/thedevs-network/kutt",
+        "url": "https://t.me/prpodcast/16",
+        "keywords": ["github"]
+    },
+    {
+        "cover": "/covers/ep03.jpg",
+        "releaseDate": "June 6, 2021",
+        "duration": "25:05",
+        "title": "kateb",
+        "description": "Install and update free Farsi fonts",
+        "audioFile": "archive.org/download/final-kiavash-intro/Final_Kiavash_Intro.mp3",
+        "githubAddress": "github.com/kiamazi/kateb",
+        "url": "https://t.me/prpodcast/14",
+        "keywords": ["github"]
+    },
+    {
+        "cover": "/covers/ep02.jpg",
+        "releaseDate": "October 25, 2020",
+        "duration": "25:02",
+        "title": "awesome-coranavirus",
+        "description": "Huge collection of useful projects and resources for COVID-19",
+        "audioFile": "archive.org/download/episode2-sorosh-final/episode2-sorosh-final.mp3",
+        "githubAddress": "github.com/soroushchehresa/awesome-coronavirus",
+        "url": "https://t.me/prpodcast/11",
+        "keywords": ["github"]
+    },
+    {
+        "cover": "/covers/ep01.jpg",
+        "releaseDate": "August 23, 2020",
+        "duration": "35:08",
+        "title": "fl_chart",
+        "description": "A library to draw fantastic charts in Flutter",
+        "audioFile": "archive.org/download/prpodcast-iman-final/prpodcast-iman-final.mp3",
+        "githubAddress": "github.com/imaNNeoFighT/fl_chart",
+        "url": "https://t.me/prpodcast/8",
+        "keywords": ["github"]
+    }
+]
