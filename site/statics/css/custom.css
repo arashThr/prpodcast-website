@@ -43,5 +43,9 @@ footer {
   background-color: #111;
   color: aliceblue;
   text-align: center;
-  padding: 2rem;
+  padding: 1rem;
+}
+
+footer a {
+  color: cadetblue;
 }
