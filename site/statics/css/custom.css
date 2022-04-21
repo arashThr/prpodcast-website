@@ -38,3 +38,10 @@ ul.ep-listing {
   display: flex;
   justify-content: space-between;
 }
+
+footer {
+  background-color: #111;
+  color: aliceblue;
+  text-align: center;
+  padding: 2rem;
+}
