@@ -13,7 +13,7 @@
         <lastBuildDate>${ new Date().toUTCString() }</lastBuildDate>
         <image>
             <link>${ site.url }${ site.baseurl }</link>
-            <url>${ site.url }${ site.baseurl }/public/img/itunes.jpg</url>
+            <url>${ site.url }${ site.baseurl }/img/logo.png</url>
             <title>${ site.title }</title>
         </image>
         <itunes:subtitle>${ site.tagline }</itunes:subtitle>
@@ -24,16 +24,8 @@
             <itunes:name>${ site.author.name }</itunes:name>
             <itunes:email>${ site.author.email }</itunes:email>
         </itunes:owner>
-        <itunes:image href="${ site.url }${ site.baseurl }/public/img/itunes.jpg" />
-        <itunes:category text="Society &amp; Culture">
-            <itunes:category text="Personal Journals" />
-        </itunes:category>
-        <itunes:category text="Comedy">
-            <itunes:category text="Comedy Interviews" />
-        </itunes:category>
-        <itunes:category text="Business">
-            <itunes:category text="Careers" />
-        </itunes:category>
+        <itunes:image href="${ site.url }${ site.baseurl }/img/logo.png" />
+        <itunes:category text="Technology" />
         <itunes:explicit>no</itunes:explicit>
         % for (let post of episodes) {
         <item>
@@ -42,13 +34,13 @@
             <pubDate>${ post.releaseDate }</pubDate>
             <description>${ xmlEscape(post.description) }</description>
             <guid isPermaLink="true">${ site.url }${ site.baseurl }${ post.url }</guid>
-            <enclosure url="${ site.redirect }${ post.audioFile }" length="${ post.duration }" type="audio/mp3"/>
+            <enclosure url="https://${ site.redirect }${ post.audioFile }" length="${ post.duration }" type="audio/mp3"/>
             <itunes:author>${ site.author.name }</itunes:author>
             <itunes:subtitle>${ site.title }: ${ xmlEscape(post.title) }</itunes:subtitle>
             <itunes:summary>${ xmlEscape(post.description) }</itunes:summary>
             <itunes:duration>${ post.duration }</itunes:duration>
             <itunes:keywords>${ (post.keywords || []).join(', ') }</itunes:keywords>
-            <itunes:image href="${ site.url + (post.cover ? post.cover : site.baseurl + '/public/img/itunes.jpg') }" />
+            <itunes:image href="${ site.url + (post.cover ? post.cover : site.baseurl + '/img/logo.png') }" />
             <itunes:explicit>${ post.explicit || "no" }</itunes:explicit>
             <itunes:block>${ post.block || "no" }</itunes:block>
         </item>
