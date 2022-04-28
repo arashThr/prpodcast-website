@@ -1,15 +1,15 @@
 {
     "site": {
         "lang": "en",
-        "url": "prpodcast.net",
+        "url": "https://prpodcast.net",
         "baseurl": "",
         "title": "PR Podcast",
         "tagline": "PR Podcast, open source stories",
         "description": "Interviews with open source code creators",
         "keywords": "open source, interview, programming",
-        "redirect": "https://dts.podtrac.com/redirect.mp3/",
+        "redirect": "",
         "author": {
-            "name": "Arash Thr",
+            "name": "Arash Taher",
             "email": "arashThr@outlook.com"
         }
     }
