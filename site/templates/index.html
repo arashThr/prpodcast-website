@@ -54,9 +54,9 @@
       % for (let ep of episodes) {
         <li class="episode">
           <div class="ep-title">
-            <a href="${ep.githubAddress}"><code>${ep.title}</code></a>
+            <a href="${ep.repoUrl}"><code>${ep.title}</code></a>
             <hr class="hr-list">
-            <time class="time publish-date">${ep.releaseDate}</time>
+            <time class="time publish-date">${ep.publishDate}</time>
           </div>
           <div class="ep-desc">
             ${ep.description}
