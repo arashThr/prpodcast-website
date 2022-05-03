@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -eu
 
@@ -17,18 +17,32 @@ if [[ $@ > 1 && $1 == 'test' ]]; then
     exit 0
 fi
 
-echo 'Copying static files...'
-rm -rf $DIST_DIR
-cp -a $STATICS_DIR $DIST_DIR
+function build () {
+    echo 'Copying static files...'
+    rm -rf $DIST_DIR
+    cp -a $STATICS_DIR $DIST_DIR
 
-for file in $(cd $TEMPLATES_DIR; find . -type f); do
-    dir=$(dirname $file)
-    echo "Transform $file"
-    [ -d $dir ] || mkdir -p $DIST_DIR/$dir
-    node $OUT_DIR/$GEN_SCRIPT $TEMPLATES_DIR/$file $DIST_DIR/$file
-done
-echo 'Done'
+    for file in $(cd $TEMPLATES_DIR; find . -type f); do
+        dir=$(dirname $file)
+        echo "Transform $file"
+        [ -d $dir ] || mkdir -p $DIST_DIR/$dir
+        node $OUT_DIR/$GEN_SCRIPT $TEMPLATES_DIR/$file $DIST_DIR/$file
+    done
+}
+
+build
 
 if [[ $@ > 1 && $1 == 'serve' ]]; then
-    serve $DIST_DIR
+    serve $DIST_DIR &
+
+    while true; do
+        sleep 1
+        if [[ -n `find ./site -mtime -2s` ]]; then
+            echo "Site files changed. Rebuilding ..."
+            build
+            echo 'Build is done'
+            # Since we look back 2 seconds, give it some time to past changes
+            sleep 1
+        fi
+    done
 fi
