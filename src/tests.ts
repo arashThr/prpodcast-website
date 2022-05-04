@@ -1,5 +1,5 @@
 import assert from 'assert';
-import { markdown_convert as convert } from './markdown.js'
+import { convertMarkdown as convert, FrontMatter, parseFrontMatter } from './markdown.js'
 import { TemplateEngine } from './templates.js'
 import { TestSuite, testCase } from './testing.js'
 
@@ -82,5 +82,56 @@ templateTests.runTests(
         <p> Content </p>`
         const rendered = env.engine.render(template)
         assert.ok(rendered.startsWith('Hello'))
+    })
+)
+
+class ParsePostTest extends TestSuite {
+    title = 'Title'
+    layout = 'episode'
+    duration = '1:30'
+    size = '100'
+    audioUrl = 'https://site.com'
+    summary = 'Summary of the post'
+    cover = '/img/cover.jpg'
+    fms: string
+    mds: string
+    fullPost: string
+    fm: FrontMatter
+
+    constructor(desc: string) {
+        super(desc)
+      
+        this.fms =
+        `layout: ${this.layout}
+        title: ${this.title}
+        duration: ${this.duration}
+        size: ${this.size}
+        audioUrl: ${this.audioUrl}
+        summary: ${this.summary}
+        cover: ${this.cover}`
+       
+        this.mds = `# Episode
+        __Welcome__`
+        
+        this.fullPost = `---\n${this.fms}\n---\n${this.mds}`
+        
+        this.fm = {
+            layout: this.layout,
+            title: this.title,
+            duration: this.duration,
+            size: this.size,
+            summary: this.summary,
+            cover: this.cover,
+            audioUrl: this.audioUrl
+        }
+    }
+}
+
+let postsTests = new ParsePostTest('Parsing markdowns as posts')
+
+postsTests.runTests(
+    testCase('read front matter', (post) => {
+        const fm = parseFrontMatter(post.fms)
+        assert.deepEqual(fm, post.fm)
     })
 )

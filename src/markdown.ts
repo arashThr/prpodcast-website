@@ -1,6 +1,4 @@
-// TODO: For future
-
-export function markdown_convert(md: string) {
+export function convertMarkdown(md: string) {
     return md
         .replaceAll(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
         .replaceAll(/\_(.*?)\_/g, '<em>$1</em>')
@@ -10,23 +8,40 @@ export function markdown_convert(md: string) {
         .replaceAll(/^\s*### (.*)/g, '<h3>$1</h3>')
 }
 
-interface FrontMatter {
+export interface FrontMatter {
+    layout: string
     title: string,
-    type: 'post' | 'episode'
     duration: string,
-    length: number,
-    file: string,
-    summary?: string,
+    size: string,
+    audioUrl: string,
+    summary: string,
     cover?: string,
 }
 
-export function parse_front_matter(fm: string) {
-    const fmo = {}
-    for (let parts of fm
+export function parseFrontMatter(fms: string): FrontMatter {
+    const fmm = new Map<string, string>()
+    for (let kv of fms
         .split('\n')
         .filter(l => l.trim() != '')
-        .map(l => l.split('=').map(p => p.trim()))) {
-            Object.assign(fmo, {a: parts[1] })
+        .map(l => l.split(':').map(p => p.trim()))) {
+            fmm.set(kv[0], kv.slice(1).join(':'))
     }
-    return fmo
+
+    const getProp = (p: string): string => {
+        if (fmm.has(p)) return fmm.get(p) as string
+        throw new Error(`${p} not defined`)
+    }
+
+    const props: Record<string, string> = 'title duration audioUrl summary cover layout size'
+        .split(' ').reduce((p, c) => Object.assign(p, { [c]: getProp(c)}), {})
+
+    return {
+        layout: props.layout,
+        title: props.title,
+        duration: props.duration,
+        size: props.size,
+        summary: props.summary,
+        cover: props.cover,
+        audioUrl: props.audioUrl
+    }
 }
