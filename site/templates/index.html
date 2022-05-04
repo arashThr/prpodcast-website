@@ -1,40 +1,12 @@
-<!doctype html>
-<html lang="en">
+%- include header.html
 
-<head>
-  <meta charset="utf-8">
-  <title></title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <meta property="og:title" content="">
-  <meta property="og:type" content="">
-  <meta property="og:url" content="">
-  <meta property="og:image" content="">
-
-  <link rel="apple-touch-icon" href="icon.png">
-  <!-- Place favicon.ico in the root directory -->
-
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/custom.css">
-
-  <meta name="theme-color" content="#fafafa">
-</head>
-
-<body>
-
-  <div class="main">
-    <section class="intro">
-      <header>
-        <h1>Welcome to PR Podcast</h1>
-      </header>
       <p>PR podcast is an <strong>interview podcast with open source creators</strong>.</p>
       <p>You can listen to each episode in our <a href="https://t.me/prpodcast">Telegram channel</a> or you can
         subscribe to our mailing list to receive an
         email after each episode is published.</p>
 
       <div class="email-form">
-        <form action="/subscribe" method="get" onsubmit="return captureSubscribe()">
+        <form action="/subscribe" method="get" onsubmit="captureSubscribe()">
           <input type="text" id="email-addr" name="email-addr" value="Email" onclick="clearEmail()">
           <input type="submit" id="subscribe-button" value="Subscribe">
         </form>
@@ -68,16 +40,4 @@
       </ul>
     </section>
 
-  </div>
-
-  <footer>
-    <p>PR Podcast is created by: <em><a href="https://arashTaher.ir">Arash Taher</a></em> and <em>Mehdi Moozeh</em></p>
-    <p><a href="https://github.com/arashThr/prpodcast-website/">Github repo</a></p>
-  </footer>
-
-
-  <script src="js/main.js"></script>
-  <!-- Analytics -->
-</body>
-
-</html>
+%- include footer.html

@@ -1,5 +1,5 @@
 import fs from 'fs/promises'
-import { render } from './templates.js'
+import { TemplateEngine } from './templates.js'
 
 // Can be more dynamic
 let configs = JSON.parse(await fs.readFile('./site/data/configs.json', 'utf-8'))
@@ -18,4 +18,7 @@ if (process.argv.length !== 4) {
 const input = process.argv[2]
 const output = process.argv[3]
 const content = await fs.readFile(input, 'utf-8')
-await fs.writeFile(output, render(content, siteData))
+const engine = new TemplateEngine()
+await engine.init()
+const rendered = engine.render(content, siteData)
+await fs.writeFile(output, rendered)

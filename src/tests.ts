@@ -1,28 +1,13 @@
 import assert from 'assert';
 import { markdown_convert as convert } from './markdown.js'
-import { render } from './templates.js'
+import { TemplateEngine } from './templates.js'
+import { TestSuite, testCase } from './testing.js'
 
-function testCase(desc: string, testFunc: () => void) {
-    return { desc, testFunc }
-}
+class MarkdownTest extends TestSuite { }
 
-let counter = 1
-function test(desc: string, ...tests: {desc: string, testFunc: () => void}[]) {
-    console.log(`--- ${desc} ---`)
-    for (let t of tests) {
-        try {
-            t.testFunc()
-            console.log(`\u001b[32m✔ Test No. ${counter}: ${t.desc}\u001b[0m`)
-        } catch (e) {
-            console.log(`\u001b[31m✗ Test No. ${counter}: ${t.desc}\u001b[0m - Error:\n`, e)
-        } finally {
-            counter += 1
-        }
-    }
-}
+let markdown = new MarkdownTest('Test Markdown')
 
-test(
-    'Test Markdown',
+markdown.runTests(
     testCase('Bold conversion', () => {
         const md = '**STRONG!**'
         const html = convert(md)
@@ -40,40 +25,57 @@ test(
     })
 )
 
-test(
-    'Template engine',
-    testCase('Simple lines should appear the same', () => {
-        assert.equal(render('Hello').trim(), 'Hello')
+class RenderTest extends TestSuite {
+    engine: TemplateEngine = new TemplateEngine()
+
+    setup(): void {
+        this.engine = new TemplateEngine()
+    }
+}
+
+const templateTests = new RenderTest('Template engine')
+
+templateTests.runTests(
+    testCase('Simple lines should appear the same', (env) => {
+        assert.equal(env.engine.render('Hello').trim(), 'Hello')
     }),
-    testCase('Variable substitution', () => {
-        assert.equal(render('Hello ${name}', {name: 'Arash'}).trim(), 'Hello Arash')
+    testCase('Variable substitution', (env) => {
+        assert.equal(env.engine.render('Hello ${name}', {name: 'Arash'}).trim(), 'Hello Arash')
     }),
-    testCase('Multiple variable substitution', () => {
-        assert.equal(render('Hello ${name} with age ${ age }', {name: 'John', age: 100}), 'Hello John with age 100\n')
+    testCase('Multiple variable substitution', (env) => {
+        assert.equal(env.engine.render('Hello ${name} with age ${ age }', {name: 'John', age: 100}), 'Hello John with age 100\n')
     }),
-    testCase('If condition', () => {
+    testCase('If condition', (env) => {
         const template =
         `% if (num > 0) {
         num more than 0
         % } else {
         num less than 0
         % }`
-        assert.equal(render(template, {num: 1}).trim(), 'num more than 0')
-        assert.equal(render(template, {num: -1}).trim(), 'num less than 0')
+        assert.equal(env.engine.render(template, {num: 1}).trim(), 'num more than 0')
+        assert.equal(env.engine.render(template, {num: -1}).trim(), 'num less than 0')
     }),
-    testCase('For loop', () => {
+    testCase('For loop', (env) => {
         const template =
         `% for (let i of nums)
         \${i}`
-        assert.equal(render(template, {nums: [1,2,3]}).replaceAll(/\s/g, ''), "123")
+        assert.equal(env.engine.render(template, {nums: [1,2,3]}).replaceAll(/\s/g, ''), "123")
     }),
-    testCase('For loop on objects', () => {
+    testCase('For loop on objects', (env) => {
         const template =
         `% for (let p of people) {
         \${p.name}|
         \${p.age}-
         % }`
         const data = { people: [{name: 'A', age: 10}, {name: 'B', age: 20}] }
-        assert.equal(render(template, data).replaceAll(/\s/g, ''), 'A|10-B|20-')
+        assert.equal(env.engine.render(template, data).replaceAll(/\s/g, ''), 'A|10-B|20-')
+    }),
+    testCase('Include html into page', (env) => {
+        env.engine.includes.set('intro.html', 'Hello')
+        const template =
+        `%- include intro.html
+        <p> Content </p>`
+        const rendered = env.engine.render(template)
+        assert.ok(rendered.startsWith('Hello'))
     })
 )
