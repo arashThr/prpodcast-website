@@ -10,10 +10,12 @@ TEMPLATES_DIR="./site/templates"
 STATICS_DIR="./site/statics"
 GEN_SCRIPT="generate.js"
 
+echo "Transpiling TS files..."
+rm -rf $OUT_DIR
 npx tsc --project tsconfig.json
 
 if [[ $@ > 1 && $1 == 'test' ]]; then
-    node out/tests.js
+    node $OUT_DIR/tests.js
     exit 0
 fi
 
