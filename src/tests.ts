@@ -22,6 +22,11 @@ markdown.runTests(
         const md = '[Link](https://example.com)'
         const html = convert(md)
         assert.equal(html, '<a href="https://example.com">Link</a>')
+    }),
+    testCase('Headers', () => {
+        assert.equal(convert('# Title1'), '<h1>Title1</h1>')
+        assert.equal(convert('## Title2'), '<h2>Title2</h2>')
+        assert.equal(convert('### Title3'), '<h3>Title3</h3>')
     })
 )
 

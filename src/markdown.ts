@@ -5,6 +5,9 @@ export function markdown_convert(md: string) {
         .replaceAll(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
         .replaceAll(/\_(.*?)\_/g, '<em>$1</em>')
         .replaceAll(/\[(.*)\]\((.*)\)/g, '<a href="$2">$1</a>')
+        .replaceAll(/^\s*# (.*)/g, '<h1>$1</h1>')
+        .replaceAll(/^\s*## (.*)/g, '<h2>$1</h2>')
+        .replaceAll(/^\s*### (.*)/g, '<h3>$1</h3>')
 }
 
 interface FrontMatter {
