@@ -1,5 +1,11 @@
 /* My custom CSS */
 
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
 .main {
   margin: 0 auto;
   max-width: 50em;
@@ -7,8 +13,16 @@
   padding: 2em 1em 2em 1em;
 }
 
-.email-form {
-  display: flex;
+.btn {
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+.textField {
+  border: none;
+  border-bottom: 1px solid black;
+  margin-right: 1rem;
 }
 
 ul.ep-listing {

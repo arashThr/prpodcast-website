@@ -6,9 +6,9 @@
         email after each episode is published.</p>
 
       <div class="email-form">
-        <form action="/subscribe" method="get" onsubmit="captureSubscribe()">
-          <input type="text" id="email-addr" name="email-addr" value="Email" onclick="clearEmail()">
-          <input type="submit" id="subscribe-button" value="Subscribe">
+        <form action="/subscribe" method="get" onsubmit="return captureSubscribe()">
+          <input type="text" class="textField" id="email-addr" name="email-addr" onclick="clearEmail()" placeholder="Email">
+          <input type="submit" class="btn" id="subscribe-button" value="Subscribe">
         </form>
       </div>
 
