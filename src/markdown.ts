@@ -45,3 +45,51 @@ export function parseFrontMatter(fms: string): FrontMatter {
         audioUrl: props.audioUrl
     }
 }
+
+export interface RawPost {
+    frontMatter: string
+    markdown: string
+    date: string
+    title: string
+}
+
+export function processContent(content: string, siteData: object, fileName: string): RawPost {
+    if (!content.trim().startsWith('---'))
+        throw new Error('There is no YAML front matter in the ' + fileName)
+    
+    let fms = ''
+    let mds = ''
+    let isFm = false
+    let isMd = false
+    for (let l of content.split('\n')) {
+        if (l.trim().startsWith('---')) {
+            isFm = isFm ? false : true
+            if (!isFm) isMd = true
+        }
+        else if (isFm)
+            fms += l + '\n'
+        else if (isMd)
+            mds += l + '\n'
+        else
+            throw new Error('Front matter parse failed for ' + fileName)
+    }
+
+    const [date, title] = parsePostFileName(fileName)
+
+    return {
+        date,
+        title,
+        frontMatter: fms.trim(),
+        markdown: mds.trim(),
+    }
+}
+
+export function parsePostFileName(fileName: string): [string, string] {
+    const m = fileName.match(/(\d{4}-\d{2}-\d{2})-(.*)\.md/)
+    if (!m)
+        throw new Error('File name structure is incorrect: yyyy-mm-dd-Title.md')
+
+    const date = m[1]
+    const title = m[2]
+    return [date, title]
+}

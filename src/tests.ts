@@ -1,5 +1,5 @@
 import assert from 'assert';
-import { convertMarkdown as convert, FrontMatter, parseFrontMatter } from './markdown.js'
+import * as Post from './markdown.js'
 import { TemplateEngine } from './templates.js'
 import { TestSuite, testCase } from './testing.js'
 
@@ -10,23 +10,23 @@ let markdown = new MarkdownTest('Test Markdown')
 markdown.runTests(
     testCase('Bold conversion', () => {
         const md = '**STRONG!**'
-        const html = convert(md)
+        const html = Post.convertMarkdown(md)
         assert.equal(html, '<strong>STRONG!</strong>')
     }),
     testCase('Italic conversion', () => {
         const md = '_Italic_'
-        const html = convert(md)
+        const html = Post.convertMarkdown(md)
         assert.equal(html, '<em>Italic</em>')
     }),
     testCase('Link conversion', () => {
         const md = '[Link](https://example.com)'
-        const html = convert(md)
+        const html = Post.convertMarkdown(md)
         assert.equal(html, '<a href="https://example.com">Link</a>')
     }),
     testCase('Headers', () => {
-        assert.equal(convert('# Title1'), '<h1>Title1</h1>')
-        assert.equal(convert('## Title2'), '<h2>Title2</h2>')
-        assert.equal(convert('### Title3'), '<h3>Title3</h3>')
+        assert.equal(Post.convertMarkdown('# Title1'), '<h1>Title1</h1>')
+        assert.equal(Post.convertMarkdown('## Title2'), '<h2>Title2</h2>')
+        assert.equal(Post.convertMarkdown('### Title3'), '<h3>Title3</h3>')
     })
 )
 
@@ -86,20 +86,25 @@ templateTests.runTests(
 )
 
 class ParsePostTest extends TestSuite {
-    title = 'Title'
+    dateString = '2022-05-07'
+    title = 'new_post'
+    fileName: string
+
     layout = 'episode'
     duration = '1:30'
     size = '100'
     audioUrl = 'https://site.com'
     summary = 'Summary of the post'
     cover = '/img/cover.jpg'
+
     fms: string
     mds: string
     fullPost: string
-    fm: FrontMatter
+    fm: Post.FrontMatter
 
     constructor(desc: string) {
         super(desc)
+        this.fileName = this.dateString + '-' + this.title + '.md'
       
         this.fms =
         `layout: ${this.layout}
@@ -130,8 +135,20 @@ class ParsePostTest extends TestSuite {
 let postsTests = new ParsePostTest('Parsing markdowns as posts')
 
 postsTests.runTests(
-    testCase('read front matter', (post) => {
-        const fm = parseFrontMatter(post.fms)
-        assert.deepEqual(fm, post.fm)
+    testCase('read front matter', (sample) => {
+        const fm = Post.parseFrontMatter(sample.fms)
+        assert.deepEqual(fm, sample.fm)
+    }),
+    testCase('parse file name', (sample) => {
+        const [date, title] = Post.parsePostFileName(sample.fileName)
+        assert.deepEqual(date, sample.dateString)
+        assert.equal(title, sample.title)
+    }),
+    testCase('render post', (sample) => {
+        const post = Post.processContent(sample.fullPost, {}, sample.fileName)
+        assert.deepEqual(post.date, sample.dateString)
+        assert.equal(post.title, sample.title)
+        assert.deepEqual(post.frontMatter, sample.fms)
+        assert.deepEqual(post.markdown, sample.mds)
     })
 )
