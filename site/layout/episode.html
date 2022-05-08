@@ -2,6 +2,31 @@
 
 <h1>${ post.title }</h1>
 
+<strong><a href="${ post.repoUrl }">Github repo</a></strong>
+
 ${ content }
+
+% if (post.cover) {
+<div class="img-div">
+    <img src="${ site.baseurl}${ post.cover }" alt="FL chart logo">
+</div>
+% }
+
+<br>
+<div>
+    Listen to this episode in all podcast platforms
+    <ul>
+        <li>Apple podcasts</li>
+        <li>Spotify</li>
+        <li>Google podcasts</li>
+    </ul>
+
+    Listen to this episode directly here:
+    <audio controls>
+        <source src="${ post.audioUrl }" type="audio/mpeg">
+        Your browser does not support the audio tag.
+    </audio>
+</div>
+
 
 %- include footer.html

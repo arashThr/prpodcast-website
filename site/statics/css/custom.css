@@ -54,12 +54,30 @@ ul.ep-listing {
 }
 
 footer {
-  background-color: #111;
-  color: aliceblue;
   text-align: center;
-  padding: 1rem;
+  width: 75%;
+  margin: 0 auto;
 }
 
 footer a {
   color: cadetblue;
+}
+
+img {
+  height: auto;
+  width: 100%;
+  max-width: 600px;
+}
+
+audio {
+  width: 100%;
+  max-width: 600px;
+  margin: 1rem 0;
+}
+
+nav ul {
+  display: flex;
+  list-style-type: none;
+  justify-content: space-evenly;
+  padding: 0;
 }
