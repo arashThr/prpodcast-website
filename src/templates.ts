@@ -53,8 +53,11 @@ export class TemplateEngine {
         for (let l of template.split('\n')) {
             if (l.match(/^\s*%-/)) {
                 let m = l.match(/%- include (\S*)/)
-                if (!m) throw new Error('INCLUDE matching failed: ' + l)
-                code += 'output += `' + this.includes.get(m[1]) + '\\n`;\n'
+                if (!m) throw new Error('"Include" matching failed: ' + l)
+                const template = this.includes.get(m[1])
+                if (!template) throw new Error(`${m[1]} template not found`)
+                const renderedTemplate = this.renderHtml(template, siteData)
+                code += 'output += `' + renderedTemplate + '\\n`;\n'
             }
             else if (l.match(/^\s*%/))
                 code += l.trim().slice(1) + '\n'
@@ -100,9 +103,9 @@ export class PostEngine extends TemplateEngine {
 
     renderPost(content: string, siteData: object): [postHtml: string, postPath: string] {
         const [date, fileName] = Post.parsePostFileName(this.filePath)
-        const [fms, mds] = Post.getSections(content)
+        const [fms, postTemplate] = Post.getSections(content)
         const postData = Post.parseFrontMatter(fms, date)
-        const postTemplate = Post.convertMarkdown(mds)
+        // const postTemplate = Post.convertMarkdown(mds)
 
         let data = Object.assign({post: postData}, siteData)
         const postHtml = this.renderHtml(postTemplate, data)

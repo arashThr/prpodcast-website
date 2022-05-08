@@ -87,12 +87,13 @@ templateTests.runTests(
         assert.equal(env.engine.renderHtml(template, data).replaceAll(/\s/g, ''), 'A|10-B|20-')
     }),
     testCase('Include html into page', (env) => {
-        env.engine.includes.set('intro.html', 'Hello')
+        env.engine.includes.set('intro.html', '% for (let i of [0, 1]) {\n' +
+            '${i} ${words[i]}\n% }')
         const template =
         `%- include intro.html
         <p> Content </p>`
-        const rendered = env.engine.renderHtml(template)
-        assert.ok(rendered.startsWith('Hello'))
+        const rendered = env.engine.renderHtml(template, {words: ['zero', 'one']})
+        assert.equal(rendered, '0 zero\n1 one\n\n        <p> Content </p>\n')
     })
 )
 
@@ -169,10 +170,7 @@ postsTests.runTests(
         engine.includes.set('sample_include.html', 'I am included')
         const [postHtml, postPath] = engine.renderPost(sample.fullPost, { site: { title: 'Site Title' } })
 
-        assert.equal(postHtml, 'Site Title new_post <h1>Episode</h1>\n' +
-        'I am included\n' +
-        '        <strong>Welcome</strong>\n' +
-        '\n')
+        assert.equal(postHtml, 'Site Title new_post # Episode\nI am included\n\n        **Welcome**\n\n')
         assert.equal(postPath, 'new_post.html')
     })
 )
