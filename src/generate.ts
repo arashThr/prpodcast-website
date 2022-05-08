@@ -1,5 +1,6 @@
 import fs from 'fs/promises'
-import { TemplateEngine } from './templates.js'
+import { extname, dirname, join } from 'path'
+import { TemplateEngine, PostEngine } from './templates.js'
 
 // Can be more dynamic
 let configs = JSON.parse(await fs.readFile('./site/data/configs.json', 'utf-8'))
@@ -15,10 +16,29 @@ if (process.argv.length !== 4) {
     process.exit(1)
 }
 
-const input = process.argv[2]
-const output = process.argv[3]
-const content = await fs.readFile(input, 'utf-8')
-const engine = new TemplateEngine()
-await engine.init()
-const rendered = engine.render(content, siteData)
-await fs.writeFile(output, rendered)
+async function writeContent(filePath: string, content: string) {
+    const dir = dirname(filePath)
+    try {
+        await fs.access(dir)
+    } catch {
+        await fs.mkdir(dir, { recursive: true })
+    } finally {
+        await fs.writeFile(filePath, content)
+    }
+}
+
+const inputFile = process.argv[2]
+const outputDir = process.argv[3]
+const content = await fs.readFile(inputFile, 'utf-8')
+// TODO: Engine should return parent class and just call render - type: post | page
+if (extname(inputFile) === '.md') {
+    const engine = new PostEngine(inputFile)
+    await engine.init()
+    const [post, postPath] = engine.renderPost(content, siteData)
+    await writeContent(join(outputDir, postPath), post)
+} else {
+    const engine = new TemplateEngine(inputFile)
+    await engine.init()
+    const rendered = engine.renderHtml(content, siteData)
+    await writeContent(join(outputDir, inputFile), rendered)
+}

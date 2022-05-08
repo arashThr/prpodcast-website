@@ -123,7 +123,9 @@ class ParsePostTest extends TestSuite {
         summary: ${this.summary}
         cover: ${this.cover}`
        
-        this.mds = `# Episode\n__Welcome__`
+        this.mds = `# Episode
+        %- include sample_include.html
+        __Welcome__`
         
         this.fullPost = `---\n${this.fms}\n---\n${this.mds}`
         
@@ -144,7 +146,7 @@ let postsTests = new ParsePostTest('Parsing markdowns as posts')
 
 postsTests.runTests(
     testCase('read front matter', (sample) => {
-        const fm = Post.parseFrontMatter(sample.fms, new Date(sample.dateString), sample.title)
+        const fm = Post.parseFrontMatter(sample.fms, new Date(sample.dateString))
         assert.deepEqual(fm, sample.fm)
     }),
     testCase('parse file name', (sample) => {
@@ -160,9 +162,13 @@ postsTests.runTests(
     testCase('apply layouts to post', (sample) => {
         const engine = new PostEngine(sample.filePath)
         engine.layouts.set(sample.layout, '${ site.title } ${ post.title } ${ content }')
+        engine.includes.set('sample_include.html', 'I am included')
         const [postHtml, postPath] = engine.renderPost(sample.fullPost, { site: { title: 'Site Title' } })
 
-        assert.equal(postHtml, 'Site Title new_post <h1>Episode</h1>\n<em></em>Welcome<em></em>\n\n')
-        assert.equal(postPath, 'posts/new_post.html')
+        assert.equal(postHtml, 'Site Title new_post <h1>Episode</h1>\n' +
+        'I am included\n' +
+        '        <em></em>Welcome<em></em>\n' +
+        '\n')
+        assert.equal(postPath, 'new_post.html')
     })
 )

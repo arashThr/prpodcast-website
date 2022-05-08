@@ -1,6 +1,6 @@
 import * as Post from './post.js'
 import { readFile, readdir, stat } from "fs/promises"
-import { join, basename, dirname } from 'path'
+import { join, basename, dirname, extname } from 'path'
 
 function xmlEscape(text: string) {
     const escapes: { [k: string]: string } = {
@@ -70,19 +70,21 @@ export class PostEngine extends TemplateEngine {
     layouts: Map<string, string> = new Map()
 
     constructor(filePath: string) {
-        super(filePath)
+        // Remove "content" directory from post path
+        const postPath = join(...filePath.split('/').slice(1))
+        super(postPath)
     }
 
     // TODO: Experimental use of parallel run
     async init() {
         await super.init()
-        const layoutFiles = await getFiles('./site/layout')
+        const layoutFiles = (await getFiles('./site/layout')).filter(f => extname(f) === '.html')
         let p = []
         for (let f of layoutFiles) {
             p.push(new Promise(resolve => {
                 resolve(readFile(f, 'utf-8'))
             }).then(content => {
-                this.layouts.set(basename(f), content as string)
+                this.layouts.set(basename(f, '.html'), content as string)
             }))
         }
         await Promise.all(p)
@@ -95,9 +97,9 @@ export class PostEngine extends TemplateEngine {
     }
 
     renderPost(content: string, siteData: object): [postHtml: string, postPath: string] {
-        const [date, title] = Post.parsePostFileName(this.filePath)
+        const [date, fileName] = Post.parsePostFileName(this.filePath)
         const [fms, mds] = Post.getSections(content)
-        const postData = Post.parseFrontMatter(fms, date, title)
+        const postData = Post.parseFrontMatter(fms, date)
         const postTemplate = Post.convertMarkdown(mds)
 
         let data = Object.assign({post: postData}, siteData)
@@ -107,6 +109,6 @@ export class PostEngine extends TemplateEngine {
         const layout = this.getLayout(postData.layout)
         const fullHtml = this.renderHtml(layout, data)
 
-        return [fullHtml, join(dirname(this.filePath), title + '.html')]
+        return [fullHtml, join(dirname(this.filePath), fileName + '.html')]
     }
 }

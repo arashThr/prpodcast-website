@@ -9,6 +9,7 @@ OUT_DIR="./out"
 TEMPLATES_DIR="./site/templates"
 STATICS_DIR="./site/statics"
 GEN_SCRIPT="generate.js"
+POSTS_DIR="content"
 
 echo "Transpiling TS files..."
 rm -rf $OUT_DIR
@@ -19,20 +20,27 @@ if [[ $@ > 1 && $1 == 'test' ]]; then
     exit 0
 fi
 
-function build () {
+function build_pages () {
     echo 'Copying static files...'
     rm -rf $DIST_DIR
     cp -a $STATICS_DIR $DIST_DIR
 
     for file in $(cd $TEMPLATES_DIR; find . -type f); do
-        dir=$(dirname $file)
-        echo "Transform $file"
-        [ -d $dir ] || mkdir -p $DIST_DIR/$dir
-        node $OUT_DIR/$GEN_SCRIPT $TEMPLATES_DIR/$file $DIST_DIR/$file
+        echo "Transform page $file"
+        node $OUT_DIR/$GEN_SCRIPT $TEMPLATES_DIR/$file $DIST_DIR
     done
 }
 
-build
+function build_posts () {
+    echo 'Generating posts...'
+    for file in $(cd $POSTS_DIR; find . -type f); do
+        echo "Transform post $file"
+        node $OUT_DIR/$GEN_SCRIPT $POSTS_DIR/$file $DIST_DIR
+    done
+}
+
+build_pages
+build_posts
 
 if [[ $@ > 1 && $1 == 'serve' ]]; then
     serve $DIST_DIR &
@@ -41,7 +49,8 @@ if [[ $@ > 1 && $1 == 'serve' ]]; then
         sleep 1
         if [[ -n `find ./site -mtime -2s` ]]; then
             echo "Site files changed. Rebuilding ..."
-            build
+            build_pages
+            build_posts
             echo 'Build is done'
             # Since we look back 2 seconds, give it some time to past changes
             sleep 1

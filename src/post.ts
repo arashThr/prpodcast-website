@@ -7,6 +7,7 @@ export interface FrontMatter {
     summary: string,
     cover?: string,
     date: Date,
+    // TODO: keywords, everything else
 }
 
 export function convertMarkdown(md: string) {
@@ -20,7 +21,7 @@ export function convertMarkdown(md: string) {
 }
 
 
-export function parseFrontMatter(fms: string, date: Date, title: string): FrontMatter {
+export function parseFrontMatter(fms: string, date: Date): FrontMatter {
     const fmm = new Map<string, string>()
     for (let kv of fms
         .split('\n')
@@ -34,17 +35,17 @@ export function parseFrontMatter(fms: string, date: Date, title: string): FrontM
         throw new Error(`${p} not defined`)
     }
 
-    const props: Record<string, string> = 'duration audioUrl summary cover layout size'
+    const props: Record<string, string> = 'duration audioUrl title summary layout size'
         .split(' ').reduce((p, c) => Object.assign(p, { [c]: getProp(c)}), {})
 
     return {
-        title,
         date,
+        title: props.title,
         layout: props.layout,
         duration: props.duration,
         size: props.size,
         summary: props.summary,
-        cover: props.cover,
+        cover: fmm.get('cover'),
         audioUrl: props.audioUrl
     }
 }
