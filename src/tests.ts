@@ -96,7 +96,7 @@ class ParsePostTest extends TestSuite {
     dateString = '2022-05-07'
     title = 'new_post'
     filePath: string
-    dir = 'posts'
+    dir = '/content/posts'
 
     layout = 'episode'
     duration = '1:30'

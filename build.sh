@@ -9,7 +9,7 @@ OUT_DIR="./out"
 TEMPLATES_DIR="./site/templates"
 STATICS_DIR="./site/statics"
 GEN_SCRIPT="generate.js"
-POSTS_DIR="content"
+POSTS_DIR="./site/content"
 
 echo "Transpiling TS files..."
 rm -rf $OUT_DIR

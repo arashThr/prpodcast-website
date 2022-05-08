@@ -40,5 +40,5 @@ if (extname(inputFile) === '.md') {
     const engine = new TemplateEngine(inputFile)
     await engine.init()
     const rendered = engine.renderHtml(content, siteData)
-    await writeContent(join(outputDir, inputFile), rendered)
+    await writeContent(join(outputDir, engine.filePath), rendered)
 }

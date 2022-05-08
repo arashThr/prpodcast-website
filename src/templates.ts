@@ -29,8 +29,12 @@ async function getFiles(dir: string): Promise<string[]> {
 
 export class TemplateEngine {
     includes: Map<string, string> = new Map()
+    filePath: string
 
-    constructor(public filePath: string) { }
+    constructor(filePath: string) {
+        // Remove "site/dir" directory from the path
+        this.filePath = join(...filePath.split('/').slice(3))
+    }
 
     async init() {
         const includeFiles = await getFiles('./site/include')
@@ -70,9 +74,7 @@ export class PostEngine extends TemplateEngine {
     layouts: Map<string, string> = new Map()
 
     constructor(filePath: string) {
-        // Remove "content" directory from post path
-        const postPath = join(...filePath.split('/').slice(1))
-        super(postPath)
+        super(filePath)
     }
 
     // TODO: Experimental use of parallel run
