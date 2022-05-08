@@ -1,6 +1,6 @@
 import assert from 'assert';
-import * as Post from './markdown.js'
-import { TemplateEngine } from './templates.js'
+import * as Post from './post.js'
+import { PostEngine, TemplateEngine } from './templates.js'
 import { TestSuite, testCase } from './testing.js'
 
 class MarkdownTest extends TestSuite { }
@@ -31,10 +31,17 @@ markdown.runTests(
 )
 
 class RenderTest extends TestSuite {
-    engine: TemplateEngine = new TemplateEngine()
+    engine: TemplateEngine
+
+    constructor(
+        desc: string,
+        public filePath: string = 'template.html') {
+            super(desc)
+            this.engine = new TemplateEngine(this.filePath)
+        }
 
     setup(): void {
-        this.engine = new TemplateEngine()
+        this.engine = new TemplateEngine(this.filePath)
     }
 }
 
@@ -42,13 +49,13 @@ const templateTests = new RenderTest('Template engine')
 
 templateTests.runTests(
     testCase('Simple lines should appear the same', (env) => {
-        assert.equal(env.engine.render('Hello').trim(), 'Hello')
+        assert.equal(env.engine.renderHtml('Hello').trim(), 'Hello')
     }),
     testCase('Variable substitution', (env) => {
-        assert.equal(env.engine.render('Hello ${name}', {name: 'Arash'}).trim(), 'Hello Arash')
+        assert.equal(env.engine.renderHtml('Hello ${name}', {name: 'Arash'}).trim(), 'Hello Arash')
     }),
     testCase('Multiple variable substitution', (env) => {
-        assert.equal(env.engine.render('Hello ${name} with age ${ age }', {name: 'John', age: 100}), 'Hello John with age 100\n')
+        assert.equal(env.engine.renderHtml('Hello ${name} with age ${ age }', {name: 'John', age: 100}), 'Hello John with age 100\n')
     }),
     testCase('If condition', (env) => {
         const template =
@@ -57,14 +64,14 @@ templateTests.runTests(
         % } else {
         num less than 0
         % }`
-        assert.equal(env.engine.render(template, {num: 1}).trim(), 'num more than 0')
-        assert.equal(env.engine.render(template, {num: -1}).trim(), 'num less than 0')
+        assert.equal(env.engine.renderHtml(template, {num: 1}).trim(), 'num more than 0')
+        assert.equal(env.engine.renderHtml(template, {num: -1}).trim(), 'num less than 0')
     }),
     testCase('For loop', (env) => {
         const template =
         `% for (let i of nums)
         \${i}`
-        assert.equal(env.engine.render(template, {nums: [1,2,3]}).replaceAll(/\s/g, ''), "123")
+        assert.equal(env.engine.renderHtml(template, {nums: [1,2,3]}).replaceAll(/\s/g, ''), "123")
     }),
     testCase('For loop on objects', (env) => {
         const template =
@@ -73,14 +80,14 @@ templateTests.runTests(
         \${p.age}-
         % }`
         const data = { people: [{name: 'A', age: 10}, {name: 'B', age: 20}] }
-        assert.equal(env.engine.render(template, data).replaceAll(/\s/g, ''), 'A|10-B|20-')
+        assert.equal(env.engine.renderHtml(template, data).replaceAll(/\s/g, ''), 'A|10-B|20-')
     }),
     testCase('Include html into page', (env) => {
         env.engine.includes.set('intro.html', 'Hello')
         const template =
         `%- include intro.html
         <p> Content </p>`
-        const rendered = env.engine.render(template)
+        const rendered = env.engine.renderHtml(template)
         assert.ok(rendered.startsWith('Hello'))
     })
 )
@@ -88,7 +95,8 @@ templateTests.runTests(
 class ParsePostTest extends TestSuite {
     dateString = '2022-05-07'
     title = 'new_post'
-    fileName: string
+    filePath: string
+    dir = 'posts'
 
     layout = 'episode'
     duration = '1:30'
@@ -104,7 +112,7 @@ class ParsePostTest extends TestSuite {
 
     constructor(desc: string) {
         super(desc)
-        this.fileName = this.dateString + '-' + this.title + '.md'
+        this.filePath = this.dir + '/' + this.dateString + '-' + this.title + '.md'
       
         this.fms =
         `layout: ${this.layout}
@@ -115,8 +123,7 @@ class ParsePostTest extends TestSuite {
         summary: ${this.summary}
         cover: ${this.cover}`
        
-        this.mds = `# Episode
-        __Welcome__`
+        this.mds = `# Episode\n__Welcome__`
         
         this.fullPost = `---\n${this.fms}\n---\n${this.mds}`
         
@@ -127,7 +134,8 @@ class ParsePostTest extends TestSuite {
             size: this.size,
             summary: this.summary,
             cover: this.cover,
-            audioUrl: this.audioUrl
+            audioUrl: this.audioUrl,
+            date: new Date(this.dateString)
         }
     }
 }
@@ -136,19 +144,25 @@ let postsTests = new ParsePostTest('Parsing markdowns as posts')
 
 postsTests.runTests(
     testCase('read front matter', (sample) => {
-        const fm = Post.parseFrontMatter(sample.fms)
+        const fm = Post.parseFrontMatter(sample.fms, new Date(sample.dateString), sample.title)
         assert.deepEqual(fm, sample.fm)
     }),
     testCase('parse file name', (sample) => {
-        const [date, title] = Post.parsePostFileName(sample.fileName)
-        assert.deepEqual(date, sample.dateString)
+        const [date, title] = Post.parsePostFileName(sample.filePath)
+        assert.deepEqual(date, new Date(sample.dateString))
         assert.equal(title, sample.title)
     }),
-    testCase('render post', (sample) => {
-        const post = Post.processContent(sample.fullPost, {}, sample.fileName)
-        assert.deepEqual(post.date, sample.dateString)
-        assert.equal(post.title, sample.title)
-        assert.deepEqual(post.frontMatter, sample.fms)
-        assert.deepEqual(post.markdown, sample.mds)
+    testCase('get sections from raw post', (sample) => {
+        const [fms, mds] = Post.getSections(sample.fullPost)
+        assert.deepEqual(fms, sample.fms)
+        assert.deepEqual(mds, sample.mds)
+    }),
+    testCase('apply layouts to post', (sample) => {
+        const engine = new PostEngine(sample.filePath)
+        engine.layouts.set(sample.layout, '${ site.title } ${ post.title } ${ content }')
+        const [postHtml, postPath] = engine.renderPost(sample.fullPost, { site: { title: 'Site Title' } })
+
+        assert.equal(postHtml, 'Site Title new_post <h1>Episode</h1>\n<em></em>Welcome<em></em>\n\n')
+        assert.equal(postPath, 'posts/new_post.html')
     })
 )
