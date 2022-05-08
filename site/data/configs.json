@@ -2,7 +2,7 @@
     "site": {
         "lang": "en",
         "url": "https://prpodcast.net",
-        "baseurl": "",
+        "baseurl": "/",
         "title": "PR Podcast",
         "tagline": "PR Podcast, open source stories",
         "description": "Interviews with open source code creators",

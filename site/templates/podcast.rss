@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xml:lang="${ site.lang }">
     <channel>
-        <atom:link href="${ site.url }${ site.baseurl }/podcast.rss" rel="self" type="application/rss+xml" />
+        <atom:link href="${ site.url }${ site.baseurl }podcast.rss" rel="self" type="application/rss+xml" />
         <title>${ site.title }</title>
         <description>${ xmlEscape(site.description) }</description>
         <link>${ site.url }${ site.baseurl }</link>
@@ -13,7 +13,7 @@
         <lastBuildDate>${ new Date().toUTCString() }</lastBuildDate>
         <image>
             <link>${ site.url }${ site.baseurl }</link>
-            <url>${ site.url }${ site.baseurl }/img/logo.png</url>
+            <url>${ site.url }${ site.baseurl }img/logo.png</url>
             <title>${ site.title }</title>
         </image>
         <itunes:subtitle>${ site.tagline }</itunes:subtitle>
@@ -24,7 +24,7 @@
             <itunes:name>${ site.author.name }</itunes:name>
             <itunes:email>${ site.author.email }</itunes:email>
         </itunes:owner>
-        <itunes:image href="${ site.url }${ site.baseurl }/img/logo.png" />
+        <itunes:image href="${ site.url }${ site.baseurl }img/logo.png" />
         <itunes:category text="Technology" />
         <itunes:explicit>no</itunes:explicit>
         % for (let post of episodes) {
@@ -40,7 +40,7 @@
             <itunes:summary>${ xmlEscape(post.description) }</itunes:summary>
             <itunes:duration>${ post.duration }</itunes:duration>
             <itunes:keywords>${ (post.keywords || []).join(', ') }</itunes:keywords>
-            <itunes:image href="${ site.url + (post.cover ? post.cover : site.baseurl + '/img/logo.png') }" />
+            <itunes:image href="${ site.url + (post.cover ? post.cover : site.baseurl + 'img/logo.png') }" />
             <itunes:explicit>${ post.explicit || "no" }</itunes:explicit>
             <itunes:block>${ post.block || "no" }</itunes:block>
         </item>
