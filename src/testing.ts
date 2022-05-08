@@ -1,6 +1,7 @@
 type UnitTest<T> = {
     desc: string,
     testFunc: (env: T) => void
+    runExclusively: boolean
 }
 
 export abstract class TestSuite {
@@ -12,8 +13,12 @@ export abstract class TestSuite {
     setup() { }
     teardown() { }
 
-    runTests(...tests: UnitTest<typeof this>[]) {
+    runTests(...allTests: UnitTest<typeof this>[]) {
         console.log(`--- ${this.desc} ---`)
+
+        const exclusiveTest = allTests.filter(t => t.runExclusively)
+        const tests = exclusiveTest.length === 0 ? allTests : exclusiveTest
+
         for (let t of tests) {
             this.counter += 1
             try {
@@ -31,6 +36,6 @@ export abstract class TestSuite {
     }
 }
 
-export function testCase<T>(desc: string, testFunc: (env: T) => void) {
-    return { desc, testFunc }
+export function testCase<T>(desc: string, testFunc: (env: T) => void, runExclusively: boolean = false) {
+    return { desc, testFunc, runExclusively }
 }
