@@ -14,7 +14,7 @@ markdown.runTests(
         assert.equal(html, '<strong>STRONG!</strong>')
     }),
     testCase('Italic conversion', () => {
-        const md = '_Italic_'
+        const md = '*Italic*'
         const html = Post.convertMarkdown(md)
         assert.equal(html, '<em>Italic</em>')
     }),
@@ -27,6 +27,10 @@ markdown.runTests(
         assert.equal(Post.convertMarkdown('# Title1'), '<h1>Title1</h1>')
         assert.equal(Post.convertMarkdown('## Title2'), '<h2>Title2</h2>')
         assert.equal(Post.convertMarkdown('### Title3'), '<h3>Title3</h3>')
+    }),
+    testCase('Links', () => {
+        assert.equal(Post.convertMarkdown('[link](https://example.com)'), '<a href="https://example.com">link</a>', 'Page links')
+        assert.equal(Post.convertMarkdown('![link](/image.png)'), '<img src="/image.png" alt="link">', 'Image links')
     })
 )
 
@@ -125,7 +129,7 @@ class ParsePostTest extends TestSuite {
        
         this.mds = `# Episode
         %- include sample_include.html
-        __Welcome__`
+        **Welcome**`
         
         this.fullPost = `---\n${this.fms}\n---\n${this.mds}`
         
@@ -167,7 +171,7 @@ postsTests.runTests(
 
         assert.equal(postHtml, 'Site Title new_post <h1>Episode</h1>\n' +
         'I am included\n' +
-        '        <em></em>Welcome<em></em>\n' +
+        '        <strong>Welcome</strong>\n' +
         '\n')
         assert.equal(postPath, 'new_post.html')
     })

@@ -12,9 +12,10 @@ export interface FrontMatter {
 
 export function convertMarkdown(md: string) {
     return md
+        .replaceAll(/\!\[(.*?)\]\((.*?)\)/g, '<img src="$2" alt="$1">')
+        .replaceAll(/\[(.*?)\]\((.*?)\)/g, '<a href="$2">$1</a>')
         .replaceAll(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-        .replaceAll(/\_(.*?)\_/g, '<em>$1</em>')
-        .replaceAll(/\[(.*)\]\((.*)\)/g, '<a href="$2">$1</a>')
+        .replaceAll(/\*(.*?)\*/g, '<em>$1</em>')
         .replaceAll(/^\s*# (.*)/g, '<h1>$1</h1>')
         .replaceAll(/^\s*## (.*)/g, '<h2>$1</h2>')
         .replaceAll(/^\s*### (.*)/g, '<h3>$1</h3>')
