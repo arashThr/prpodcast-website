@@ -1,3 +1,5 @@
+// TODO: Get rid of
+// Whatever's in front matter, should be accessible in `post`
 export interface FrontMatter {
     layout: string
     title: string,
@@ -8,6 +10,7 @@ export interface FrontMatter {
     cover?: string,
     date: Date,
     path: string,
+    repoUrl?: string,
     // TODO: keywords, everything else
 }
 
@@ -50,6 +53,7 @@ export function parseFrontMatter(fms: string, date: Date, postPath: string): Fro
         cover: fmm.get('cover'),
         audioUrl: props.audioUrl,
         path: postPath,
+        repoUrl: fmm.get('repoUrl'),
     }
 }
 

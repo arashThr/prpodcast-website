@@ -28,16 +28,15 @@
       </header>
       <ul class="ep-listing">
 
-      % for (let ep of posts) {
+      % for (let ep of posts.sort((a, b) => Date.parse(b.date) - Date.parse(a.date))) {
         <li class="episode">
           <div class="ep-title">
-            <a href="${ site.baseurl}${ep.path}"><code>${ep.title}</code></a>
+            <a href="${ site.baseurl}${ep.path}"><code>${ ep.title }</code></a>
             <hr class="hr-list">
-            <time class="time publish-date">${ new Date(ep.date).toDateString()}</time>
+            <time class="time publish-date">${ new Date(ep.date).toDateString() }</time>
           </div>
           <div class="ep-desc">
-            ${ep.description}
-            <a class="ep-link" href="${ep.url}">Listen</a>
+            ${ep.summary}
           </div>
         </li>
         % }
