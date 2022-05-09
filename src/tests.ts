@@ -99,7 +99,7 @@ templateTests.runTests(
 
 class ParsePostTest extends TestSuite {
     dateString = '2022-05-07'
-    title = 'new_post'
+    title = 'Post Title'
     filePath: string
     dir = '/content/posts'
 
@@ -109,6 +109,7 @@ class ParsePostTest extends TestSuite {
     audioUrl = 'https://site.com'
     summary = 'Summary of the post'
     cover = '/img/cover.jpg'
+    postPath = 'my_post'
 
     fms: string
     mds: string
@@ -117,7 +118,7 @@ class ParsePostTest extends TestSuite {
 
     constructor(desc: string) {
         super(desc)
-        this.filePath = this.dir + '/' + this.dateString + '-' + this.title + '.md'
+        this.filePath = this.dir + '/' + this.dateString + '-' + this.postPath + '.md'
       
         this.fms =
         `layout: ${this.layout}
@@ -126,7 +127,8 @@ class ParsePostTest extends TestSuite {
         size: ${this.size}
         audioUrl: ${this.audioUrl}
         summary: ${this.summary}
-        cover: ${this.cover}`
+        cover: ${this.cover}
+        path: ${this.postPath}`
        
         this.mds = `# Episode
         %- include sample_include.html
@@ -142,7 +144,8 @@ class ParsePostTest extends TestSuite {
             summary: this.summary,
             cover: this.cover,
             audioUrl: this.audioUrl,
-            date: new Date(this.dateString)
+            date: new Date(this.dateString),
+            path: this.postPath,
         }
     }
 }
@@ -150,14 +153,14 @@ class ParsePostTest extends TestSuite {
 let postsTests = new ParsePostTest('Parsing markdowns as posts')
 
 postsTests.runTests(
-    testCase('read front matter', (sample) => {
-        const fm = Post.parseFrontMatter(sample.fms, new Date(sample.dateString))
-        assert.deepEqual(fm, sample.fm)
-    }),
-    testCase('parse file name', (sample) => {
-        const [date, title] = Post.parsePostFileName(sample.filePath)
+    testCase('Parse post file name', (sample) => {
+        const [date, postPath] = Post.parsePostFileName(sample.filePath)
         assert.deepEqual(date, new Date(sample.dateString))
-        assert.equal(title, sample.title)
+        assert.equal(postPath, sample.postPath)
+    }),
+    testCase('Read front matter', (sample) => {
+        const fm = Post.parseFrontMatter(sample.fms, new Date(sample.dateString), sample.postPath)
+        assert.deepEqual(fm, sample.fm)
     }),
     testCase('get sections from raw post', (sample) => {
         const [fms, mds] = Post.getSections(sample.fullPost)
@@ -165,12 +168,13 @@ postsTests.runTests(
         assert.deepEqual(mds, sample.mds)
     }),
     testCase('apply layouts to post', (sample) => {
-        const engine = new PostEngine(sample.filePath)
+        const engine = new PostEngine(sample.filePath, false)
         engine.layouts.set(sample.layout, '${ site.title } ${ post.title } ${ content }')
         engine.includes.set('sample_include.html', 'I am included')
-        const [postHtml, postPath] = engine.renderPost(sample.fullPost, { site: { title: 'Site Title' } })
+        const [postHtml, postData, postPath] = engine.renderPost(sample.fullPost, { site: { title: 'Site Title' } })
 
-        assert.equal(postHtml, 'Site Title new_post # Episode\nI am included\n\n        **Welcome**\n\n')
-        assert.equal(postPath, 'new_post.html')
+        assert.equal(postHtml, 'Site Title Post Title # Episode\nI am included\n\n        **Welcome**\n\n')
+        assert.deepEqual(postData.date, new Date(sample.dateString))
+        assert.equal(postPath, 'my_post.html')
     })
 )

@@ -13,6 +13,8 @@ POSTS_DIR="./site/content"
 
 echo "Transpiling TS files..."
 rm -rf $OUT_DIR
+rm -rf $DIST_DIR
+[[ -f .posts_cache.json ]] && rm .posts_cache.json
 npx tsc --project tsconfig.json
 
 if [[ $@ > 1 && $1 == 'test' ]]; then
@@ -22,8 +24,7 @@ fi
 
 function build_pages () {
     echo 'Copying static files...'
-    rm -rf $DIST_DIR
-    cp -a $STATICS_DIR $DIST_DIR
+    cp -a $STATICS_DIR/ $DIST_DIR/
 
     for file in $(cd $TEMPLATES_DIR; find . -type f); do
         echo "Transform page $file"
@@ -39,8 +40,8 @@ function build_posts () {
     done
 }
 
-build_pages
 build_posts
+build_pages
 
 if [[ $@ > 1 && $1 == 'serve' ]]; then
     serve $DIST_DIR &
@@ -49,8 +50,8 @@ if [[ $@ > 1 && $1 == 'serve' ]]; then
         sleep 1
         if [[ -n `find ./site -mtime -2s` ]]; then
             echo "Site files changed. Rebuilding ..."
-            build_pages
             build_posts
+            build_pages
             echo 'Build is done'
             # Since we look back 2 seconds, give it some time to past changes
             sleep 1

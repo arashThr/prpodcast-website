@@ -6,9 +6,13 @@ import { TemplateEngine, PostEngine } from './templates.js'
 let configs = JSON.parse(await fs.readFile('./site/data/configs.json', 'utf-8'))
 let episodes = JSON.parse(await fs.readFile('./site/data/episodes.json', 'utf-8'))
 
+const postsCacheFile = '.posts_cache.json'
+
+const cacheFile = await fs.open(postsCacheFile, 'a+')
+const postsData = JSON.parse(await cacheFile.readFile('utf-8') || '{}')
 const siteData = {
     site: configs.site,
-    episodes
+    posts: Object.values(postsData)
 }
 
 if (process.argv.length !== 4) {
@@ -34,8 +38,10 @@ const content = await fs.readFile(inputFile, 'utf-8')
 if (extname(inputFile) === '.md') {
     const engine = new PostEngine(inputFile)
     await engine.init()
-    const [post, postPath] = engine.renderPost(content, siteData)
+    const [post, postData, postPath] = engine.renderPost(content, siteData)
     await writeContent(join(outputDir, postPath), post)
+    postsData[postPath] = postData
+    await fs.writeFile(postsCacheFile, JSON.stringify(postsData, null, 4))
 } else {
     const engine = new TemplateEngine(inputFile)
     await engine.init()

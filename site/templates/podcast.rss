@@ -27,17 +27,17 @@
         <itunes:image href="${ site.url }${ site.baseurl }img/logo.png" />
         <itunes:category text="Technology" />
         <itunes:explicit>no</itunes:explicit>
-        % for (let post of episodes) {
+        % for (let post of posts) {
         <item>
             <title>${ xmlEscape(post.title) }</title>
             <link>${ site.url }${ site.baseurl }${ post.url }</link>
             <pubDate>${ post.publishDate }</pubDate>
-            <description>${ xmlEscape(post.description) }</description>
+            <description>${ xmlEscape(post.summary) }</description>
             <guid isPermaLink="true">${ post.repoUrl }</guid>
             <enclosure url="https://${ site.redirect }${ post.audioFile }" length="${ post.duration }" type="audio/mp3"/>
             <itunes:author>${ site.author.name }</itunes:author>
             <itunes:subtitle>${ site.title }: ${ xmlEscape(post.title) }</itunes:subtitle>
-            <itunes:summary>${ xmlEscape(post.description) }</itunes:summary>
+            <itunes:summary>${ xmlEscape(post.summary) }</itunes:summary>
             <itunes:duration>${ post.duration }</itunes:duration>
             <itunes:keywords>${ (post.keywords || []).join(', ') }</itunes:keywords>
             <itunes:image href="${ site.url + (post.cover ? post.cover : site.baseurl + 'img/itunes-logo.png') }" />

@@ -7,6 +7,7 @@ export interface FrontMatter {
     summary: string,
     cover?: string,
     date: Date,
+    path: string,
     // TODO: keywords, everything else
 }
 
@@ -22,7 +23,7 @@ export function convertMarkdown(md: string) {
 }
 
 
-export function parseFrontMatter(fms: string, date: Date): FrontMatter {
+export function parseFrontMatter(fms: string, date: Date, postPath: string): FrontMatter {
     const fmm = new Map<string, string>()
     for (let kv of fms
         .split('\n')
@@ -47,7 +48,8 @@ export function parseFrontMatter(fms: string, date: Date): FrontMatter {
         size: props.size,
         summary: props.summary,
         cover: fmm.get('cover'),
-        audioUrl: props.audioUrl
+        audioUrl: props.audioUrl,
+        path: postPath,
     }
 }
 

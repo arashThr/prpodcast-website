@@ -2,3 +2,4 @@ node_modules
 distout
 out
 dist
+.posts_cache.json

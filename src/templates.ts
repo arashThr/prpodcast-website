@@ -1,5 +1,5 @@
 import * as Post from './post.js'
-import { readFile, readdir, stat } from "fs/promises"
+import * as fs from "fs/promises"
 import { join, basename, dirname, extname } from 'path'
 
 function xmlEscape(text: string) {
@@ -16,9 +16,9 @@ function xmlEscape(text: string) {
 
 async function getFiles(dir: string): Promise<string[]> {
     let files: string[] = []
-    for (let f of await readdir(dir)) {
+    for (let f of await fs.readdir(dir)) {
         const path = join(dir, f)
-        let fileStat = await stat(path)
+        let fileStat = await fs.stat(path)
         if (fileStat.isDirectory())
             files.push(...await getFiles(path))
         else
@@ -39,7 +39,7 @@ export class TemplateEngine {
     async init() {
         const includeFiles = await getFiles('./site/include')
         for (let f of includeFiles) {
-            const content = await readFile(f, 'utf-8')
+            const content = await fs.readFile(f, 'utf-8')
             this.includes.set(basename(f), content)
         }
     }
@@ -76,7 +76,9 @@ export class TemplateEngine {
 export class PostEngine extends TemplateEngine {
     layouts: Map<string, string> = new Map()
 
-    constructor(filePath: string) {
+    constructor(
+        filePath: string,
+        public updateCache = true) {
         super(filePath)
     }
 
@@ -87,7 +89,7 @@ export class PostEngine extends TemplateEngine {
         let p = []
         for (let f of layoutFiles) {
             p.push(new Promise(resolve => {
-                resolve(readFile(f, 'utf-8'))
+                resolve(fs.readFile(f, 'utf-8'))
             }).then(content => {
                 this.layouts.set(basename(f, '.html'), content as string)
             }))
@@ -101,10 +103,10 @@ export class PostEngine extends TemplateEngine {
         return layout
     }
 
-    renderPost(content: string, siteData: object): [postHtml: string, postPath: string] {
+    renderPost(content: string, siteData: object): [postHtml: string, postData: Post.FrontMatter, postPath: string] {
         const [date, fileName] = Post.parsePostFileName(this.filePath)
         const [fms, postTemplate] = Post.getSections(content)
-        const postData = Post.parseFrontMatter(fms, date)
+        const postData = Post.parseFrontMatter(fms, date, fileName)
         // const postTemplate = Post.convertMarkdown(mds)
 
         let data = Object.assign({post: postData}, siteData)
@@ -114,6 +116,6 @@ export class PostEngine extends TemplateEngine {
         const layout = this.getLayout(postData.layout)
         const fullHtml = this.renderHtml(layout, data)
 
-        return [fullHtml, join(dirname(this.filePath), fileName + '.html')]
+        return [fullHtml, postData, join(dirname(this.filePath), fileName + '.html')]
     }
 }
