@@ -81,3 +81,13 @@ nav ul {
   justify-content: space-evenly;
   padding: 0;
 }
+
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-logo {
+  max-width: 100px;
+}
