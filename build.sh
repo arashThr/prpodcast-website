@@ -43,6 +43,8 @@ function build_posts () {
 build_posts
 build_pages
 
+find dist -type f
+
 if [[ $@ > 1 && $1 == 'serve' ]]; then
     serve $DIST_DIR &
 
