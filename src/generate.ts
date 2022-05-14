@@ -8,10 +8,15 @@ let configs = JSON.parse(await fs.readFile('./site/data/configs.json', 'utf-8'))
 const postsCacheFile = '.posts_cache.json'
 
 const cacheFile = await fs.open(postsCacheFile, 'a+')
+type PostData = {
+    [key: string]: string
+}
 const postsData = JSON.parse(await cacheFile.readFile('utf-8') || '{}')
+const posts: PostData[] = Object.values(postsData)
+
 const siteData = {
     site: configs.site,
-    posts: Object.values(postsData)
+    posts: posts.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
 }
 
 if (process.argv.length !== 4) {

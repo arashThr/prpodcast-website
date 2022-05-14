@@ -9,8 +9,8 @@
         <managingEditor>arashThr@outlook.com (Arash Taher)</managingEditor>
         <webMaster>arashThr@outlook.com (Arash Taher)</webMaster>
         <copyright>2022 PR Podcast</copyright>
-        <pubDate>Wed, 11 May 2022 16:09:28 GMT</pubDate>
-        <lastBuildDate>Wed, 11 May 2022 16:09:28 GMT</lastBuildDate>
+        <pubDate>Sat, 14 May 2022 11:10:57 GMT</pubDate>
+        <lastBuildDate>Sat, 14 May 2022 11:10:57 GMT</lastBuildDate>
         <image>
             <link>https://prpodcast.net/</link>
             <url>https://prpodcast.net/img/logo.png</url>
@@ -27,6 +27,22 @@
         <itunes:image href="https://prpodcast.net/img/logo.png" />
         <itunes:category text="Technology" />
         <itunes:explicit>no</itunes:explicit>
+        <item>
+            <title>Flutter Charts</title>
+            <link>https://prpodcast.net/undefined</link>
+            <pubDate>undefined</pubDate>
+            <description>A library to draw fantastic charts in Flutter</description>
+            <guid isPermaLink="true">github.com/imaNNeoFighT/fl_chart</guid>
+            <enclosure url="https://undefined" length="35:08" type="audio/mp3"/>
+            <itunes:author>Arash Taher</itunes:author>
+            <itunes:subtitle>PR Podcast: Flutter Charts</itunes:subtitle>
+            <itunes:summary>A library to draw fantastic charts in Flutter</itunes:summary>
+            <itunes:duration>35:08</itunes:duration>
+            <itunes:keywords></itunes:keywords>
+            <itunes:image href="https://prpodcast.netimg/fl_chart.jpg" />
+            <itunes:explicit>no</itunes:explicit>
+            <itunes:block>no</itunes:block>
+        </item>
         <item>
             <title>Awesome Corona Virus</title>
             <link>https://prpodcast.net/undefined</link>
@@ -60,18 +76,18 @@
             <itunes:block>no</itunes:block>
         </item>
         <item>
-            <title>Flutter Charts</title>
+            <title>Kutt</title>
             <link>https://prpodcast.net/undefined</link>
             <pubDate>undefined</pubDate>
-            <description>A library to draw fantastic charts in Flutter</description>
-            <guid isPermaLink="true">github.com/imaNNeoFighT/fl_chart</guid>
-            <enclosure url="https://undefined" length="35:08" type="audio/mp3"/>
+            <description>Free Modern URL Shortener</description>
+            <guid isPermaLink="true">https://github.com/thedevs-network/kutt</guid>
+            <enclosure url="https://undefined" length="27:31" type="audio/mp3"/>
             <itunes:author>Arash Taher</itunes:author>
-            <itunes:subtitle>PR Podcast: Flutter Charts</itunes:subtitle>
-            <itunes:summary>A library to draw fantastic charts in Flutter</itunes:summary>
-            <itunes:duration>35:08</itunes:duration>
+            <itunes:subtitle>PR Podcast: Kutt</itunes:subtitle>
+            <itunes:summary>Free Modern URL Shortener</itunes:summary>
+            <itunes:duration>27:31</itunes:duration>
             <itunes:keywords></itunes:keywords>
-            <itunes:image href="https://prpodcast.netimg/fl_chart.jpg" />
+            <itunes:image href="https://prpodcast.netimg/kutt.png" />
             <itunes:explicit>no</itunes:explicit>
             <itunes:block>no</itunes:block>
         </item>
@@ -104,22 +120,6 @@
             <itunes:duration>25:27</itunes:duration>
             <itunes:keywords></itunes:keywords>
             <itunes:image href="https://prpodcast.netimg/icono.png" />
-            <itunes:explicit>no</itunes:explicit>
-            <itunes:block>no</itunes:block>
-        </item>
-        <item>
-            <title>Kutt</title>
-            <link>https://prpodcast.net/undefined</link>
-            <pubDate>undefined</pubDate>
-            <description>Free Modern URL Shortener</description>
-            <guid isPermaLink="true">https://github.com/thedevs-network/kutt</guid>
-            <enclosure url="https://undefined" length="27:31" type="audio/mp3"/>
-            <itunes:author>Arash Taher</itunes:author>
-            <itunes:subtitle>PR Podcast: Kutt</itunes:subtitle>
-            <itunes:summary>Free Modern URL Shortener</itunes:summary>
-            <itunes:duration>27:31</itunes:duration>
-            <itunes:keywords></itunes:keywords>
-            <itunes:image href="https://prpodcast.netimg/kutt.png" />
             <itunes:explicit>no</itunes:explicit>
             <itunes:block>no</itunes:block>
         </item>
