@@ -6,7 +6,6 @@ set -eu
 
 DIST_DIR="./dist"
 OUT_DIR="./out"
-TEMPLATES_DIR="./site/templates"
 STATICS_DIR="./site/statics"
 GEN_SCRIPT="generate.js"
 POSTS_DIR="./site/content"
@@ -26,9 +25,9 @@ function build_pages () {
     echo 'Copying static files...'
     cp -a $STATICS_DIR/ $DIST_DIR/
 
-    for file in $(cd $TEMPLATES_DIR; find . -type f); do
+    for file in $(cd $STATICS_DIR; find . -type f | xargs file | grep ASCII | cut -d':' -f1); do
         echo "Transform page $file"
-        node $OUT_DIR/$GEN_SCRIPT $TEMPLATES_DIR/$file $DIST_DIR
+        node $OUT_DIR/$GEN_SCRIPT page $STATICS_DIR/$file $DIST_DIR
     done
 }
 
@@ -36,14 +35,12 @@ function build_posts () {
     echo 'Generating posts...'
     for file in $(cd $POSTS_DIR; find . -type f); do
         echo "Transform post $file"
-        node $OUT_DIR/$GEN_SCRIPT $POSTS_DIR/$file $DIST_DIR
+        node $OUT_DIR/$GEN_SCRIPT post $POSTS_DIR/$file $DIST_DIR
     done
 }
 
 build_posts
 build_pages
-
-find dist -type f
 
 if [[ $@ > 1 && $1 == 'serve' ]]; then
     serve $DIST_DIR &

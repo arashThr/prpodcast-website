@@ -1,6 +1,6 @@
 function captureSubscribe () {
     const email = document.getElementById('email-addr').value
-    if (!email.match(/^\S+@\S+\.\S+$/)) {
+    if (!email.match(/^S+@S+.S+$/)) {
         document.getElementById('email-addr').value = 'Invalid Address'
         return false
     }
@@ -22,3 +22,4 @@ function captureSubscribe () {
 function clearEmail () {
     document.getElementById('email-addr').value = ''
 }
+

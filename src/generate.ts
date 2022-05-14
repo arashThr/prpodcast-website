@@ -1,5 +1,5 @@
 import fs from 'fs/promises'
-import { extname, dirname, join } from 'path'
+import { dirname, join } from 'path'
 import { TemplateEngine, PostEngine } from './templates.js'
 
 // Can be more dynamic
@@ -19,8 +19,8 @@ const siteData = {
     posts: posts.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
 }
 
-if (process.argv.length !== 4) {
-    console.error('Expecting input and output files')
+if (process.argv.length !== 5) {
+    console.error('Expecting: [post|page] inputFile outputFiles')
     process.exit(1)
 }
 
@@ -35,20 +35,25 @@ async function writeContent(filePath: string, content: string) {
     }
 }
 
-const inputFile = process.argv[2]
-const outputDir = process.argv[3]
-const content = await fs.readFile(inputFile, 'utf-8')
+const docType = process.argv[2].toLowerCase()
+const inputFile = process.argv[3]
+const outputDir = process.argv[4]
+let content = await fs.readFile(inputFile, 'utf-8')
+content = content.replaceAll('`', '\\`')
 // TODO: Engine should return parent class and just call render - type: post | page
-if (extname(inputFile) === '.md') {
+if (docType === 'post') {
     const engine = new PostEngine(inputFile)
     await engine.init()
     const [post, postData, postPath] = engine.renderPost(content, siteData)
     await writeContent(join(outputDir, postPath), post)
     postsData[postPath] = postData
     await fs.writeFile(postsCacheFile, JSON.stringify(postsData, null, 4))
-} else {
+} else if (docType === 'page') {
     const engine = new TemplateEngine(inputFile)
     await engine.init()
     const rendered = engine.renderHtml(content, siteData)
     await writeContent(join(outputDir, engine.filePath), rendered)
+} else {
+    throw new Error ('Unknown doc type: ' + docType)
 }
+
