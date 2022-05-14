@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/custom.css">
+
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+
+  <div class="main">
+    <div class="site-header">
+      <img src="/img/PR-logo.png" alt="PR Podcast" class="site-logo">
+      <h3>Open source stories</h3>
+    </div>
+    <hr>
+    <nav>
+      <ul>
+        <li>About</li>
+        <li>Contact</li>
+      </ul>
+    </nav>
+    <hr>
+
+
+    <section>
+      <header>
+        <h1>Welcome to PR Podcast</h1>
+      </header>
+
+      <p>PR podcast is an <strong>interview podcast with open source creators</strong>.</p>
+      <p>You can listen to each episode in our <a href="https://t.me/prpodcast">Telegram channel</a> or you can
+        subscribe to our mailing list to receive an
+        email after each episode is published.</p>
+
+      <div class="email-form">
+        <form action="/subscribe" method="get" onsubmit="return captureSubscribe()">
+          <input type="text" class="textField" id="email-addr" name="email-addr" onclick="clearEmail()" placeholder="Email">
+          <input type="submit" class="btn" id="subscribe-button" value="Subscribe">
+        </form>
+      </div>
+
+      <p>
+        For updates and news, follow PR Podcast on <a href="https://twitter.com/PRPodcast01/">Twitter</a>.
+      </p>
+    </section>
+
+    <section class="episodes">
+      <header>
+        <h2>List of episodes</h2>
+      </header>
+      <ul class="ep-listing">
+
+        <li class="episode">
+          <div class="ep-title">
+            <a href="/icono"><code>Icono</code></a>
+            <hr class="hr-list">
+            <time class="time publish-date">Sat Aug 14 2021</time>
+          </div>
+          <div class="ep-desc">
+            One tag One icon, no font or svg, Pure CSS
+          </div>
+        </li>
+        <li class="episode">
+          <div class="ep-title">
+            <a href="/art"><code>Art</code></a>
+            <hr class="hr-list">
+            <time class="time publish-date">Sun Jul 11 2021</time>
+          </div>
+          <div class="ep-desc">
+            ASCII art library for Python
+          </div>
+        </li>
+        <li class="episode">
+          <div class="ep-title">
+            <a href="/kutt"><code>Kutt</code></a>
+            <hr class="hr-list">
+            <time class="time publish-date">Sat Jun 26 2021</time>
+          </div>
+          <div class="ep-desc">
+            Free Modern URL Shortener
+          </div>
+        </li>
+        <li class="episode">
+          <div class="ep-title">
+            <a href="/kateb"><code>Kateb</code></a>
+            <hr class="hr-list">
+            <time class="time publish-date">Sun Jun 06 2021</time>
+          </div>
+          <div class="ep-desc">
+            Install and update free Farsi fonts
+          </div>
+        </li>
+        <li class="episode">
+          <div class="ep-title">
+            <a href="/awesome-coranavirus"><code>Awesome Corona Virus</code></a>
+            <hr class="hr-list">
+            <time class="time publish-date">Sun Oct 25 2020</time>
+          </div>
+          <div class="ep-desc">
+            Huge collection of useful projects and resources for COVID-19
+          </div>
+        </li>
+        <li class="episode">
+          <div class="ep-title">
+            <a href="/fl_chart"><code>Flutter Charts</code></a>
+            <hr class="hr-list">
+            <time class="time publish-date">Sun Aug 23 2020</time>
+          </div>
+          <div class="ep-desc">
+            A library to draw fantastic charts in Flutter
+          </div>
+        </li>
+
+      </ul>
+    </section>
+
+</div>
+
+<hr>
+
+<footer>
+  <p>PR Podcast is created by: <em><a href="https://arashTaher.ir">Arash Taher</a></em> and <em>Mehdi Moozeh</em></p>
+  <p><a href="https://github.com/arashThr/prpodcast-website/">Github repo</a></p>
+</footer>
+
+
+<script src="/js/main.js"></script>
+<!-- Analytics -->
+</body>
+
+</html>
+
+
