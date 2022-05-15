@@ -1,10 +1,21 @@
 # PR Podcast website
 
+This is the repo for generating PR podcast website.
+In essense, this is a __simple static site generator with no dependencies__.
+
+## Run
 - Run `npm install` to install Typescript and Node Types
 - Build the project:
     - `./build.sh` to generatethe website in `dist` directory
     - `./build.sh test` to run the tests
     - `./build.sh serve` build and serve the website
+
+## Structure
+All the contents for the webiste are int `site` directory:
+- `content`: Markdown files for posts
+- `static`: Static files, which can have templates (TODO: Rename)
+- `layout`: Layouts that can be used in posts
+- `include`: Partial HTML files that can be included in other HTML files
 
 ## Templates
 We have our own template engine. Rules are simple:
