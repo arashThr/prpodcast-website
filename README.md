@@ -12,3 +12,8 @@ We have our own template engine. Rules are simple:
 - Lines started with `%= include` will add the HTML file from `include` directory.
 - Literal templates (`${}`) are evaluated.
 - Everything else is copied unchanged.
+
+## TODO
+- [ ] Switch `%- include` to `% include`
+- [ ] Remove data directory
+

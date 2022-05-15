@@ -3,7 +3,7 @@ import { dirname, join } from 'path'
 import { TemplateEngine, PostEngine } from './templates.js'
 
 // Can be more dynamic
-let configs = JSON.parse(await fs.readFile('./site/data/configs.json', 'utf-8'))
+let configs = JSON.parse(await fs.readFile('./site/configs.json', 'utf-8'))
 
 const postsCacheFile = '.posts_cache.json'
 
