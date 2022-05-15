@@ -50,23 +50,29 @@ export class TemplateEngine {
 
         let code = `const xmlEscape = ${xmlEscape.toString()};
         return (${args}) => { let output = '';\n`
+
         for (let l of template.split('\n')) {
-            if (l.match(/^\s*%-/)) {
-                let m = l.match(/%- include (\S*)/)
-                if (!m) throw new Error('"Include" matching failed: ' + l)
-                const template = this.includes.get(m[1])
-                if (!template) throw new Error(`${m[1]} template not found`)
-                const renderedTemplate = this.renderHtml(template, siteData)
-                code += 'output += `' + renderedTemplate + '\\n`;\n'
-            }
-            else if (l.match(/^\s*%/))
-                code += l.trim().slice(1) + '\n'
-            else
+            if (l.match(/^\s*% (.*)/)) {
+                code += l.includes('% include')
+                    ? this.addIncludedHtml(l, siteData)
+                    : l.trim().slice(1) + '\n'
+            } else {
                 code += 'output += `' + l + '\\n`;\n'
+            }
         }
+
         code += 'return output; }'
         let func = Function(code)()
         return func(...params)
+    }
+
+    private addIncludedHtml(l: string, siteData: object) {
+        let m = l.match(/% include (\S+.html)/)
+        if (!m) throw new Error('"Include" matching failed: ' + l)
+        const template = this.includes.get(m[1])
+        if (!template) throw new Error(`${m[1]} template not found`)
+        const renderedTemplate = this.renderHtml(template, siteData)
+        return 'output += `' + renderedTemplate + '\\n`;\n'
     }
 }
 

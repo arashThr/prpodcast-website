@@ -59,7 +59,7 @@ export function parseFrontMatter(fms: string, date: Date, postPath: string): Fro
 
 export function getSections(content: string): [fms: string, mds: string] {
     if (!content.trim().startsWith('---'))
-        throw new Error('There is no YAML front matter')
+        throw new Error('There is no YAML front matter: ' + content)
 
     let fms = ''
     let mds = ''

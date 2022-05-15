@@ -90,7 +90,7 @@ templateTests.runTests(
         env.engine.includes.set('intro.html', '% for (let i of [0, 1]) {\n' +
             '${i} ${words[i]}\n% }')
         const template =
-        `%- include intro.html
+        `% include intro.html
         <p> Content </p>`
         const rendered = env.engine.renderHtml(template, {words: ['zero', 'one']})
         assert.equal(rendered, '0 zero\n1 one\n\n        <p> Content </p>\n')
@@ -119,7 +119,7 @@ class ParsePostTest extends TestSuite {
     constructor(desc: string) {
         super(desc)
         this.filePath = this.dir + '/' + this.dateString + '-' + this.postPath + '.md'
-      
+
         this.fms =
         `layout: ${this.layout}
         title: ${this.title}
@@ -129,13 +129,13 @@ class ParsePostTest extends TestSuite {
         summary: ${this.summary}
         cover: ${this.cover}
         path: ${this.postPath}`
-       
+
         this.mds = `# Episode
-        %- include sample_include.html
+        % include sample_include.html
         **Welcome**`
-        
+
         this.fullPost = `---\n${this.fms}\n---\n${this.mds}`
-        
+
         this.fm = {
             layout: this.layout,
             title: this.title,

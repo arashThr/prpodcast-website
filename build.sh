@@ -33,7 +33,7 @@ function build_pages () {
 
 function build_posts () {
     echo 'Generating posts...'
-    for file in $(cd $POSTS_DIR; find . -type f); do
+    for file in $(cd $POSTS_DIR; find . -type f -name '*.md'); do
         echo "Transform post $file"
         node $OUT_DIR/$GEN_SCRIPT post $POSTS_DIR/$file $DIST_DIR
     done
