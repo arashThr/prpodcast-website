@@ -28,7 +28,7 @@
       </header>
       <ul class="ep-listing">
 
-      % for (let ep of posts.sort((a, b) => Date.parse(b.date) - Date.parse(a.date))) {
+      % for (let ep of posts) {
         <li class="episode">
           <div class="ep-title">
             <a href="${ site.baseurl}${ep.path}"><code>${ ep.title }</code></a>
