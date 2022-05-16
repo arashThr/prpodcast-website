@@ -31,9 +31,9 @@
       % for (let ep of posts) {
         <li class="episode">
           <div class="ep-title">
-            <a href="${ site.baseurl}${ep.path}"><code>${ ep.title }</code></a>
+            <a href="${ site.baseurl}${ep.url}"><code>${ ep.title }</code></a>
             <hr class="hr-list">
-            <time class="time publish-date">${ new Date(ep.date).toDateString() }</time>
+            <time class="time publish-date">${ new Date(ep.publishDate).toDateString() }</time>
           </div>
           <div class="ep-desc">
             ${ep.summary}

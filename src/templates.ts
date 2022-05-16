@@ -111,6 +111,7 @@ export class PostEngine extends TemplateEngine {
 
     renderPost(content: string, siteData: object): [postHtml: string, postData: Post.FrontMatter, postPath: string] {
         const [date, fileName] = Post.parsePostFileName(this.filePath)
+        const url = join(dirname(this.filePath), fileName)
         const [fms, postTemplate] = Post.getSections(content)
         const postData = Post.parseFrontMatter(fms, date, fileName)
         // const postTemplate = Post.convertMarkdown(mds)
@@ -122,6 +123,6 @@ export class PostEngine extends TemplateEngine {
         const layout = this.getLayout(postData.layout)
         const fullHtml = this.renderHtml(layout, data)
 
-        return [fullHtml, postData, join(dirname(this.filePath), fileName + '.html')]
+        return [fullHtml, postData, url + '.html']
     }
 }

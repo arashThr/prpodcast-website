@@ -9,8 +9,8 @@
         <managingEditor>arashThr@outlook.com (Arash Taher)</managingEditor>
         <webMaster>arashThr@outlook.com (Arash Taher)</webMaster>
         <copyright>2022 PR Podcast</copyright>
-        <pubDate>Sun, 15 May 2022 06:19:32 GMT</pubDate>
-        <lastBuildDate>Sun, 15 May 2022 06:19:32 GMT</lastBuildDate>
+        <pubDate>Mon, 16 May 2022 15:59:19 GMT</pubDate>
+        <lastBuildDate>Mon, 16 May 2022 15:59:19 GMT</lastBuildDate>
         <image>
             <link>https://prpodcast.net/</link>
             <url>https://prpodcast.net/img/logo.png</url>
@@ -29,11 +29,11 @@
         <itunes:explicit>no</itunes:explicit>
         <item>
             <title>Flutter Charts</title>
-            <link>https://prpodcast.net/undefined</link>
-            <pubDate>undefined</pubDate>
+            <link>https://prpodcast.net/fl_chart</link>
+            <pubDate>2020-08-23</pubDate>
             <description>A library to draw fantastic charts in Flutter</description>
-            <guid isPermaLink="true">github.com/imaNNeoFighT/fl_chart</guid>
-            <enclosure url="https://undefined" length="35:08" type="audio/mp3"/>
+            <guid isPermaLink="true">https://prpodcast.net/fl_chart</guid>
+            <enclosure url="https://archive.org/download/prpodcast-iman-final/prpodcast-iman-final.mp3" length="35:08" type="audio/mp3"/>
             <itunes:author>Arash Taher</itunes:author>
             <itunes:subtitle>PR Podcast: Flutter Charts</itunes:subtitle>
             <itunes:summary>A library to draw fantastic charts in Flutter</itunes:summary>
@@ -45,11 +45,11 @@
         </item>
         <item>
             <title>Awesome Corona Virus</title>
-            <link>https://prpodcast.net/undefined</link>
-            <pubDate>undefined</pubDate>
+            <link>https://prpodcast.net/awesome-coronavirus</link>
+            <pubDate>2020-10-25</pubDate>
             <description>Huge collection of useful projects and resources for COVID-19</description>
-            <guid isPermaLink="true">github.com/soroushchehresa/awesome-coronavirus</guid>
-            <enclosure url="https://undefined" length="25:02" type="audio/mp3"/>
+            <guid isPermaLink="true">https://prpodcast.net/awesome-coronavirus</guid>
+            <enclosure url="https://archive.org/download/episode2-sorosh-final/episode2-sorosh-final.mp3" length="25:02" type="audio/mp3"/>
             <itunes:author>Arash Taher</itunes:author>
             <itunes:subtitle>PR Podcast: Awesome Corona Virus</itunes:subtitle>
             <itunes:summary>Huge collection of useful projects and resources for COVID-19</itunes:summary>
@@ -61,11 +61,11 @@
         </item>
         <item>
             <title>Kateb</title>
-            <link>https://prpodcast.net/undefined</link>
-            <pubDate>undefined</pubDate>
+            <link>https://prpodcast.net/kateb</link>
+            <pubDate>2021-06-06</pubDate>
             <description>Install and update free Farsi fonts</description>
-            <guid isPermaLink="true">github.com/kiamazi/kateb</guid>
-            <enclosure url="https://undefined" length="25:05" type="audio/mp3"/>
+            <guid isPermaLink="true">https://prpodcast.net/kateb</guid>
+            <enclosure url="https://archive.org/download/final-kiavash-intro/Final_Kiavash_Intro.mp3" length="25:05" type="audio/mp3"/>
             <itunes:author>Arash Taher</itunes:author>
             <itunes:subtitle>PR Podcast: Kateb</itunes:subtitle>
             <itunes:summary>Install and update free Farsi fonts</itunes:summary>
@@ -77,11 +77,11 @@
         </item>
         <item>
             <title>Kutt</title>
-            <link>https://prpodcast.net/undefined</link>
-            <pubDate>undefined</pubDate>
+            <link>https://prpodcast.net/kutt</link>
+            <pubDate>2021-06-26</pubDate>
             <description>Free Modern URL Shortener</description>
-            <guid isPermaLink="true">https://github.com/thedevs-network/kutt</guid>
-            <enclosure url="https://undefined" length="27:31" type="audio/mp3"/>
+            <guid isPermaLink="true">https://prpodcast.net/kutt</guid>
+            <enclosure url="https://archive.org/download/episode4_pouria_final/episode4_pouria_final.mp3" length="27:31" type="audio/mp3"/>
             <itunes:author>Arash Taher</itunes:author>
             <itunes:subtitle>PR Podcast: Kutt</itunes:subtitle>
             <itunes:summary>Free Modern URL Shortener</itunes:summary>
@@ -93,11 +93,11 @@
         </item>
         <item>
             <title>Art</title>
-            <link>https://prpodcast.net/undefined</link>
-            <pubDate>undefined</pubDate>
+            <link>https://prpodcast.net/art</link>
+            <pubDate>2021-07-11</pubDate>
             <description>ASCII art library for Python</description>
-            <guid isPermaLink="true">github.com/sepandhaghighi/art</guid>
-            <enclosure url="https://undefined" length="29:51" type="audio/mp3"/>
+            <guid isPermaLink="true">https://prpodcast.net/art</guid>
+            <enclosure url="https://archive.org/download/episode5_sepand_final/episode5_sepand_final.mp3" length="29:51" type="audio/mp3"/>
             <itunes:author>Arash Taher</itunes:author>
             <itunes:subtitle>PR Podcast: Art</itunes:subtitle>
             <itunes:summary>ASCII art library for Python</itunes:summary>
@@ -109,11 +109,11 @@
         </item>
         <item>
             <title>Icono</title>
-            <link>https://prpodcast.net/undefined</link>
-            <pubDate>undefined</pubDate>
+            <link>https://prpodcast.net/icono</link>
+            <pubDate>2021-08-14</pubDate>
             <description>One tag One icon, no font or svg, Pure CSS</description>
-            <guid isPermaLink="true">github.com/saeedalipoor/icono</guid>
-            <enclosure url="https://undefined" length="25:27" type="audio/mp3"/>
+            <guid isPermaLink="true">https://prpodcast.net/icono</guid>
+            <enclosure url="https://archive.org/download/saeed_episode_6/saeed_episode_6.mp3" length="25:27" type="audio/mp3"/>
             <itunes:author>Arash Taher</itunes:author>
             <itunes:subtitle>PR Podcast: Icono</itunes:subtitle>
             <itunes:summary>One tag One icon, no font or svg, Pure CSS</itunes:summary>

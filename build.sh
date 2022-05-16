@@ -12,14 +12,15 @@ POSTS_DIR="./site/content"
 
 echo "Transpiling TS files..."
 rm -rf $OUT_DIR
-rm -rf $DIST_DIR
-[[ -f .posts_cache.json ]] && rm .posts_cache.json
 npx tsc --project tsconfig.json
 
 if [[ $@ > 1 && $1 == 'test' ]]; then
     node $OUT_DIR/tests.js
     exit 0
 fi
+
+rm -rf $DIST_DIR
+[[ -f .posts_cache.json ]] && rm .posts_cache.json
 
 function build_pages () {
     echo 'Copying static files...'

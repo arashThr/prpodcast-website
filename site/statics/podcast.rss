@@ -33,8 +33,8 @@
             <link>${ site.url }${ site.baseurl }${ post.url }</link>
             <pubDate>${ post.publishDate }</pubDate>
             <description>${ xmlEscape(post.summary) }</description>
-            <guid isPermaLink="true">${ post.repoUrl }</guid>
-            <enclosure url="https://${ site.redirect }${ post.audioFile }" length="${ post.duration }" type="audio/mp3"/>
+            <guid isPermaLink="true">${ site.url }${ site.baseurl }${ post.url }</guid>
+            <enclosure url="${ site.redirect }${ post.audioUrl }" length="${ post.duration }" type="audio/mp3"/>
             <itunes:author>${ site.author.name }</itunes:author>
             <itunes:subtitle>${ site.title }: ${ xmlEscape(post.title) }</itunes:subtitle>
             <itunes:summary>${ xmlEscape(post.summary) }</itunes:summary>

@@ -127,8 +127,7 @@ class ParsePostTest extends TestSuite {
         size: ${this.size}
         audioUrl: ${this.audioUrl}
         summary: ${this.summary}
-        cover: ${this.cover}
-        path: ${this.postPath}`
+        cover: ${this.cover}`
 
         this.mds = `# Episode
         % include sample_include.html
@@ -144,8 +143,8 @@ class ParsePostTest extends TestSuite {
             summary: this.summary,
             cover: this.cover,
             audioUrl: this.audioUrl,
-            date: new Date(this.dateString),
-            path: this.postPath,
+            publishDate: this.dateString,
+            url: this.postPath,
         }
     }
 }
@@ -155,17 +154,17 @@ let postsTests = new ParsePostTest('Parsing markdowns as posts')
 postsTests.runTests(
     testCase('Parse post file name', (sample) => {
         const [date, postPath] = Post.parsePostFileName(sample.filePath)
-        assert.deepEqual(date, new Date(sample.dateString))
+        assert.equal(date, sample.dateString)
         assert.equal(postPath, sample.postPath)
     }),
     testCase('Read front matter', (sample) => {
-        const fm = Post.parseFrontMatter(sample.fms, new Date(sample.dateString), sample.postPath)
+        const fm = Post.parseFrontMatter(sample.fms, sample.dateString, sample.postPath)
         assert.deepEqual(fm, sample.fm)
     }),
     testCase('get sections from raw post', (sample) => {
         const [fms, mds] = Post.getSections(sample.fullPost)
-        assert.deepEqual(fms, sample.fms)
-        assert.deepEqual(mds, sample.mds)
+        assert.equal(fms, sample.fms)
+        assert.equal(mds, sample.mds)
     }),
     testCase('apply layouts to post', (sample) => {
         const engine = new PostEngine(sample.filePath, false)
@@ -174,7 +173,7 @@ postsTests.runTests(
         const [postHtml, postData, postPath] = engine.renderPost(sample.fullPost, { site: { title: 'Site Title' } })
 
         assert.equal(postHtml, 'Site Title Post Title # Episode\nI am included\n\n        **Welcome**\n\n')
-        assert.deepEqual(postData.date, new Date(sample.dateString))
+        assert.equal(postData.publishDate, sample.dateString)
         assert.equal(postPath, 'my_post.html')
     })
 )
