@@ -44,5 +44,6 @@ I tried to build the `dist` on CloudFlare and then serve the directory. For some
 
 ## TODO
 - [ ] Add Markdown support for posts
-- [ ] All data defined in Front-Matter should be accessibe in the template
+- [X] All data defined in Front-Matter should be accessible in the template
 - [ ] Make transformations faster
+- [ ] Parse lists in Front-Matter

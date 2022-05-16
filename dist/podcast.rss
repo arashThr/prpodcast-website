@@ -9,8 +9,8 @@
         <managingEditor>arashThr@outlook.com (Arash Taher)</managingEditor>
         <webMaster>arashThr@outlook.com (Arash Taher)</webMaster>
         <copyright>2022 PR Podcast</copyright>
-        <pubDate>Mon, 16 May 2022 15:59:19 GMT</pubDate>
-        <lastBuildDate>Mon, 16 May 2022 15:59:19 GMT</lastBuildDate>
+        <pubDate>Mon, 16 May 2022 16:09:24 GMT</pubDate>
+        <lastBuildDate>Mon, 16 May 2022 16:09:24 GMT</lastBuildDate>
         <image>
             <link>https://prpodcast.net/</link>
             <url>https://prpodcast.net/img/logo.png</url>
@@ -38,7 +38,7 @@
             <itunes:subtitle>PR Podcast: Flutter Charts</itunes:subtitle>
             <itunes:summary>A library to draw fantastic charts in Flutter</itunes:summary>
             <itunes:duration>35:08</itunes:duration>
-            <itunes:keywords></itunes:keywords>
+            <itunes:keywords>github, open-source, programming, flutter</itunes:keywords>
             <itunes:image href="https://prpodcast.netimg/fl_chart.jpg" />
             <itunes:explicit>no</itunes:explicit>
             <itunes:block>no</itunes:block>
@@ -54,7 +54,7 @@
             <itunes:subtitle>PR Podcast: Awesome Corona Virus</itunes:subtitle>
             <itunes:summary>Huge collection of useful projects and resources for COVID-19</itunes:summary>
             <itunes:duration>25:02</itunes:duration>
-            <itunes:keywords></itunes:keywords>
+            <itunes:keywords>github, open-source, programming</itunes:keywords>
             <itunes:image href="https://prpodcast.netimg/awesome-coronavirus.png" />
             <itunes:explicit>no</itunes:explicit>
             <itunes:block>no</itunes:block>
@@ -70,7 +70,7 @@
             <itunes:subtitle>PR Podcast: Kateb</itunes:subtitle>
             <itunes:summary>Install and update free Farsi fonts</itunes:summary>
             <itunes:duration>25:05</itunes:duration>
-            <itunes:keywords></itunes:keywords>
+            <itunes:keywords>github, open-source, programming, fonts</itunes:keywords>
             <itunes:image href="https://prpodcast.netimg/kateb.png" />
             <itunes:explicit>no</itunes:explicit>
             <itunes:block>no</itunes:block>
@@ -86,7 +86,7 @@
             <itunes:subtitle>PR Podcast: Kutt</itunes:subtitle>
             <itunes:summary>Free Modern URL Shortener</itunes:summary>
             <itunes:duration>27:31</itunes:duration>
-            <itunes:keywords></itunes:keywords>
+            <itunes:keywords>github, open-source, programming</itunes:keywords>
             <itunes:image href="https://prpodcast.netimg/kutt.png" />
             <itunes:explicit>no</itunes:explicit>
             <itunes:block>no</itunes:block>
@@ -102,7 +102,7 @@
             <itunes:subtitle>PR Podcast: Art</itunes:subtitle>
             <itunes:summary>ASCII art library for Python</itunes:summary>
             <itunes:duration>29:51</itunes:duration>
-            <itunes:keywords></itunes:keywords>
+            <itunes:keywords>github, open-source, programming, ascii</itunes:keywords>
             <itunes:image href="https://prpodcast.netimg/art.png" />
             <itunes:explicit>no</itunes:explicit>
             <itunes:block>no</itunes:block>
@@ -118,7 +118,7 @@
             <itunes:subtitle>PR Podcast: Icono</itunes:subtitle>
             <itunes:summary>One tag One icon, no font or svg, Pure CSS</itunes:summary>
             <itunes:duration>25:27</itunes:duration>
-            <itunes:keywords></itunes:keywords>
+            <itunes:keywords>github, open-source, programming, css</itunes:keywords>
             <itunes:image href="https://prpodcast.netimg/icono.png" />
             <itunes:explicit>no</itunes:explicit>
             <itunes:block>no</itunes:block>

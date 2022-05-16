@@ -8,6 +8,7 @@ size: 33810344
 repoUrl: github.com/soroushchehresa/awesome-coronavirus
 cover: img/awesome-coronavirus.png
 tgAddress: https://t.me/prpodcast/11
+keywords: github, open-source, programming
 ---
 
 <p>
