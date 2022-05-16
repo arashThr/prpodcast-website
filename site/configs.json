@@ -5,10 +5,11 @@
         "baseurl": "/",
         "title": "PR Podcast",
         "tagline": "PR Podcast, open source stories",
-        "description": "Interviews with open source code creators",
+        "description": "Interviews with open source project creators and contributors",
         "keywords": "open source, interview, programming",
         "redirect": "",
-        "author": {
+        "author": "Arash Taher, Mohammad Moozeh",
+        "owner": {
             "name": "Arash Taher",
             "email": "arashThr@outlook.com"
         }

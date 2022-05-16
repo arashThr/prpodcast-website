@@ -6,8 +6,8 @@
         <description>${ xmlEscape(site.description) }</description>
         <link>${ site.url }${ site.baseurl }</link>
         <language>${ site.lang }</language>
-        <managingEditor>${ site.author.email } (${ site.author.name })</managingEditor>
-        <webMaster>${ site.author.email } (${ site.author.name })</webMaster>
+        <managingEditor>${ site.owner.email } (${ site.owner.name })</managingEditor>
+        <webMaster>${ site.owner.email } (${ site.owner.name })</webMaster>
         <copyright>${ new Date().getFullYear() } ${ site.title }</copyright>
         <pubDate>${ new Date().toUTCString() }</pubDate>
         <lastBuildDate>${ new Date().toUTCString() }</lastBuildDate>
@@ -17,12 +17,12 @@
             <title>${ site.title }</title>
         </image>
         <itunes:subtitle>${ site.tagline }</itunes:subtitle>
-        <itunes:author>${ site.author.name }</itunes:author>
+        <itunes:author>${ site.author }</itunes:author>
         <itunes:summary>${ xmlEscape(site.description) }</itunes:summary>
         <itunes:keywords>${ site.keywords }</itunes:keywords>
         <itunes:owner>
-            <itunes:name>${ site.author.name }</itunes:name>
-            <itunes:email>${ site.author.email }</itunes:email>
+            <itunes:name>${ site.owner.name }</itunes:name>
+            <itunes:email>${ site.owner.email }</itunes:email>
         </itunes:owner>
         <itunes:image href="${ site.url }${ site.baseurl }img/logo.png" />
         <itunes:category text="Technology" />
@@ -35,7 +35,7 @@
             <description>${ xmlEscape(post.summary) }</description>
             <guid isPermaLink="true">${ site.url }${ site.baseurl }${ post.url }</guid>
             <enclosure url="${ site.redirect }${ post.audioUrl }" length="${ post.duration }" type="audio/mp3"/>
-            <itunes:author>${ site.author.name }</itunes:author>
+            <itunes:author>${ site.owner.name }</itunes:author>
             <itunes:subtitle>${ site.title }: ${ xmlEscape(post.title) }</itunes:subtitle>
             <itunes:summary>${ xmlEscape(post.summary) }</itunes:summary>
             <itunes:duration>${ post.duration }</itunes:duration>

@@ -3,22 +3,22 @@
     <channel>
         <atom:link href="https://prpodcast.net/podcast.rss" rel="self" type="application/rss+xml" />
         <title>PR Podcast</title>
-        <description>Interviews with open source code creators</description>
+        <description>Interviews with open source project creators and contributors</description>
         <link>https://prpodcast.net/</link>
         <language>en</language>
         <managingEditor>arashThr@outlook.com (Arash Taher)</managingEditor>
         <webMaster>arashThr@outlook.com (Arash Taher)</webMaster>
         <copyright>2022 PR Podcast</copyright>
-        <pubDate>Mon, 16 May 2022 16:09:24 GMT</pubDate>
-        <lastBuildDate>Mon, 16 May 2022 16:09:24 GMT</lastBuildDate>
+        <pubDate>Mon, 16 May 2022 17:31:29 GMT</pubDate>
+        <lastBuildDate>Mon, 16 May 2022 17:31:29 GMT</lastBuildDate>
         <image>
             <link>https://prpodcast.net/</link>
             <url>https://prpodcast.net/img/logo.png</url>
             <title>PR Podcast</title>
         </image>
         <itunes:subtitle>PR Podcast, open source stories</itunes:subtitle>
-        <itunes:author>Arash Taher</itunes:author>
-        <itunes:summary>Interviews with open source code creators</itunes:summary>
+        <itunes:author>Arash Taher, Mohammad Moozeh</itunes:author>
+        <itunes:summary>Interviews with open source project creators and contributors</itunes:summary>
         <itunes:keywords>open source, interview, programming</itunes:keywords>
         <itunes:owner>
             <itunes:name>Arash Taher</itunes:name>
