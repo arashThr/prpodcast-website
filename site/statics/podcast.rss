@@ -13,7 +13,7 @@
         <lastBuildDate>${ new Date().toUTCString() }</lastBuildDate>
         <image>
             <link>${ site.url }${ site.baseurl }</link>
-            <url>${ site.url }${ site.baseurl }img/logo.png</url>
+            <url>${ site.url }${ site.baseurl }img/PR-logo.png</url>
             <title>${ site.title }</title>
         </image>
         <itunes:subtitle>${ site.tagline }</itunes:subtitle>
@@ -24,7 +24,7 @@
             <itunes:name>${ site.owner.name }</itunes:name>
             <itunes:email>${ site.owner.email }</itunes:email>
         </itunes:owner>
-        <itunes:image href="${ site.url }${ site.baseurl }img/logo.png" />
+        <itunes:image href="${ site.url }${ site.baseurl }img/PR-logo.png" />
         <itunes:category text="Technology" />
         <itunes:explicit>no</itunes:explicit>
         % for (let post of posts) {
