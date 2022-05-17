@@ -9,15 +9,15 @@
         <managingEditor>arashThr@outlook.com (Arash Taher)</managingEditor>
         <webMaster>arashThr@outlook.com (Arash Taher)</webMaster>
         <copyright>2022 PR Podcast</copyright>
-        <pubDate>Tue, 17 May 2022 16:16:33 GMT</pubDate>
-        <lastBuildDate>Tue, 17 May 2022 16:16:33 GMT</lastBuildDate>
+        <pubDate>Tue, 17 May 2022 16:33:36 GMT</pubDate>
+        <lastBuildDate>Tue, 17 May 2022 16:33:36 GMT</lastBuildDate>
         <image>
             <link>https://prpodcast.net/</link>
             <url>https://prpodcast.net/img/PR/itunes-logo.png</url>
             <title>PR Podcast</title>
         </image>
         <itunes:subtitle>PR Podcast, open source stories</itunes:subtitle>
-        <itunes:author>Arash Taher, Mohammad Moozeh</itunes:author>
+        <itunes:author>Arash Taher, Mehdi Moozeh</itunes:author>
         <itunes:summary>Interviews with open source project creators and contributors</itunes:summary>
         <itunes:keywords>open source, interview, programming</itunes:keywords>
         <itunes:owner>
@@ -42,6 +42,7 @@
             <itunes:image href="https://prpodcast.netimg/fl_chart.jpg" />
             <itunes:explicit>no</itunes:explicit>
             <itunes:block>no</itunes:block>
+            <itunes:season>Season one<itunes:season>
         </item>
         <item>
             <title>Awesome Corona Virus</title>
@@ -58,6 +59,7 @@
             <itunes:image href="https://prpodcast.netimg/awesome-coronavirus.png" />
             <itunes:explicit>no</itunes:explicit>
             <itunes:block>no</itunes:block>
+            <itunes:season>Season one<itunes:season>
         </item>
         <item>
             <title>Kateb</title>
@@ -74,6 +76,7 @@
             <itunes:image href="https://prpodcast.netimg/kateb.png" />
             <itunes:explicit>no</itunes:explicit>
             <itunes:block>no</itunes:block>
+            <itunes:season>Season one<itunes:season>
         </item>
         <item>
             <title>Kutt</title>
@@ -90,6 +93,7 @@
             <itunes:image href="https://prpodcast.netimg/kutt.png" />
             <itunes:explicit>no</itunes:explicit>
             <itunes:block>no</itunes:block>
+            <itunes:season>Season one<itunes:season>
         </item>
         <item>
             <title>Art</title>
@@ -106,6 +110,7 @@
             <itunes:image href="https://prpodcast.netimg/art.png" />
             <itunes:explicit>no</itunes:explicit>
             <itunes:block>no</itunes:block>
+            <itunes:season>Season one<itunes:season>
         </item>
         <item>
             <title>Icono</title>
@@ -122,6 +127,7 @@
             <itunes:image href="https://prpodcast.netimg/icono.png" />
             <itunes:explicit>no</itunes:explicit>
             <itunes:block>no</itunes:block>
+            <itunes:season>Season one<itunes:season>
         </item>
     </channel>
 </rss>
