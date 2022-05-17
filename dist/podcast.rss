@@ -9,11 +9,11 @@
         <managingEditor>arashThr@outlook.com (Arash Taher)</managingEditor>
         <webMaster>arashThr@outlook.com (Arash Taher)</webMaster>
         <copyright>2022 PR Podcast</copyright>
-        <pubDate>Mon, 16 May 2022 17:49:17 GMT</pubDate>
-        <lastBuildDate>Mon, 16 May 2022 17:49:17 GMT</lastBuildDate>
+        <pubDate>Tue, 17 May 2022 16:11:58 GMT</pubDate>
+        <lastBuildDate>Tue, 17 May 2022 16:11:58 GMT</lastBuildDate>
         <image>
             <link>https://prpodcast.net/</link>
-            <url>https://prpodcast.net/img/PR-logo.png</url>
+            <url>https://prpodcast.net/img/PR/itunes-logo.png</url>
             <title>PR Podcast</title>
         </image>
         <itunes:subtitle>PR Podcast, open source stories</itunes:subtitle>
@@ -24,7 +24,7 @@
             <itunes:name>Arash Taher</itunes:name>
             <itunes:email>arashThr@outlook.com</itunes:email>
         </itunes:owner>
-        <itunes:image href="https://prpodcast.net/img/PR-logo.png" />
+        <itunes:image href="https://prpodcast.net/img/PR/itunes-logo.png" />
         <itunes:category text="Technology" />
         <itunes:explicit>no</itunes:explicit>
         <item>

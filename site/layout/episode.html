@@ -14,14 +14,11 @@ ${ content }
 
 <br>
 <div>
-    Listen to this episode in all podcast platforms
-    <ul>
-        <li>Apple podcasts</li>
-        <li>Spotify</li>
-        <li>Google podcasts</li>
-    </ul>
+    Listen to this episode in all podcast platforms:
+    
+    % include badges.html
 
-    Listen to this episode directly here:
+    or listen to this episode directly here:
     <audio controls>
         <source src="${ post.audioUrl }" type="audio/mpeg">
         Your browser does not support the audio tag.

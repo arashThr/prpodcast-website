@@ -91,3 +91,18 @@ nav ul {
 .site-logo {
   max-width: 100px;
 }
+
+.image-line {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.svg-badge > a > img {
+  width: 165px;
+  height: 40px;
+  margin: 10px 5px;
+  filter: grayscale() blur(1px);
+  cursor: not-allowed;
+}
+

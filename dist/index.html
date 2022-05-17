@@ -26,7 +26,7 @@
   <div class="main">
     <div class="site-header">
         <a href="/">
-          <img src="/img/PR-logo.png" alt="PR Podcast" class="site-logo">
+          <img src="/img/PR/itunes-logo.png" alt="PR Podcast" class="site-logo">
         </a>
       <h3>Open source stories</h3>
     </div>
@@ -46,19 +46,21 @@
       </header>
 
       <p>PR podcast is an <strong>interview podcast with open source creators</strong>.</p>
-      <p>You can listen to each episode in our <a href="https://t.me/prpodcast">Telegram channel</a> or you can
-        subscribe to our mailing list to receive an
-        email after each episode is published.</p>
 
-      <div class="email-form">
-        <form action="/subscribe" method="get" onsubmit="return captureSubscribe()">
-          <input type="text" class="textField" id="email-addr" name="email-addr" onclick="clearEmail()" placeholder="Email">
-          <input type="submit" class="btn" id="subscribe-button" value="Subscribe">
-        </form>
+      <p>You can listen to each episode in podcast applications or in our <a href="https://t.me/prpodcast">Telegram channel</a>
+
+    <section>
+      <div class="image-line svg-badge">
+        <a href=""><img src="/img/PR/google-badge.svg"></a>
+        <a href=""><img src="/img/PR/apple-badge.svg"></a>
+        <a href=""><img src="/img/PR/spotify-badge.svg"></a>
       </div>
+    </section>
+
+
 
       <p>
-        For updates and news, follow PR Podcast on <a href="https://twitter.com/PRPodcast01/">Twitter</a>.
+        For updates and news, follow PR Podcast on <a href="https://twitter.com/PRPodcast01/">Twitter</a> or subscribe to our <a href="#mailing-list">mailing list</a>.
       </p>
     </section>
 
@@ -131,6 +133,17 @@
 
       </ul>
     </section>
+      
+    <div style="text-align: center;">
+      <h3 id="mailing-list">Mailing list</h3>
+      <p>Subscribe to our mailing list to receive an email after each episode is published.</p>
+      <div class="email-form">
+        <form action="/subscribe" method="get" onsubmit="return captureSubscribe()">
+          <input type="text" class="textField" id="email-addr" name="email-addr" onclick="clearEmail()" placeholder="Email">
+          <input type="submit" class="btn" id="subscribe-button" value="Subscribe">
+        </form>
+      </div>
+    </div>
 
 </div>
 
