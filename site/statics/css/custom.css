@@ -102,6 +102,6 @@ nav ul {
   width: 165px;
   height: 40px;
   margin: 10px 5px;
-  filter: grayscale() blur(1px);
-  cursor: not-allowed;
+  /* filter: grayscale() blur(1px);
+  cursor: not-allowed; */
 }
