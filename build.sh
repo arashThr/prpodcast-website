@@ -24,7 +24,7 @@ rm -rf $DIST_DIR
 
 function build_pages () {
     echo 'Copying static files...'
-    cp -a $STATICS_DIR/ $DIST_DIR/
+    cp -a $STATICS_DIR/. $DIST_DIR/
 
     for file in $(cd $STATICS_DIR; find . -type f | xargs file | grep ASCII | cut -d':' -f1); do
         echo "Transform page $file"
@@ -44,11 +44,12 @@ build_posts
 build_pages
 
 if [[ $@ > 1 && $1 == 'serve' ]]; then
-    serve $DIST_DIR &
+    serve -l 20000 $DIST_DIR &
 
     while true; do
         sleep 1
-        if [[ -n `find ./site -mtime -2s` ]]; then
+        # if [[ -n `find ./site -mtime -2s` ]]; then
+        if [[ -n `find ./site -newermt '2 seconds ago'` ]]; then
             echo "Site files changed. Rebuilding ..."
             build_posts
             build_pages

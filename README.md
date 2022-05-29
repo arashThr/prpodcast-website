@@ -47,3 +47,4 @@ I tried to build the `dist` on CloudFlare and then serve the directory. For some
 - [X] All data defined in Front-Matter should be accessible in the template
 - [ ] Make transformations faster
 - [ ] Parse lists in Front-Matter
+- [ ] Install `serve` locally
