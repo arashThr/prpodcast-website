@@ -9,8 +9,8 @@
         <managingEditor>arashThr@outlook.com (Arash Taher)</managingEditor>
         <webMaster>arashThr@outlook.com (Arash Taher)</webMaster>
         <copyright>2022 PR Podcast</copyright>
-        <pubDate>Sun, 22 May 2022 15:39:09 GMT</pubDate>
-        <lastBuildDate>Sun, 22 May 2022 15:39:09 GMT</lastBuildDate>
+        <pubDate>Sun, 19 Jun 2022 06:15:44 GMT</pubDate>
+        <lastBuildDate>Sun, 19 Jun 2022 06:15:44 GMT</lastBuildDate>
         <image>
             <link>https://prpodcast.net/</link>
             <url>https://prpodcast.net/img/PR/itunes-logo.png</url>
@@ -125,6 +125,23 @@
             <itunes:duration>25:27</itunes:duration>
             <itunes:keywords>github, open-source, programming, css</itunes:keywords>
             <itunes:image href="https://prpodcast.netimg/icono.png" />
+            <itunes:explicit>no</itunes:explicit>
+            <itunes:block>no</itunes:block>
+            <itunes:season>Season one</itunes:season>
+        </item>
+        <item>
+            <title>Theatre.js</title>
+            <link>https://prpodcast.net/theatre-js</link>
+            <pubDate>2022-06-19</pubDate>
+            <description>A modern animation toolbox for the web</description>
+            <guid isPermaLink="true">https://prpodcast.net/theatre-js</guid>
+            <enclosure url="https://archive.org/download/prpodcast-episode7-aria/Aria-TheaterJs.mp3" length="41:05" type="audio/mp3"/>
+            <itunes:author>Arash Taher</itunes:author>
+            <itunes:subtitle>PR Podcast: Theatre.js</itunes:subtitle>
+            <itunes:summary>A modern animation toolbox for the web</itunes:summary>
+            <itunes:duration>41:05</itunes:duration>
+            <itunes:keywords>github, open-source, programming, css</itunes:keywords>
+            <itunes:image href="https://prpodcast.netimg/theatre-js.png" />
             <itunes:explicit>no</itunes:explicit>
             <itunes:block>no</itunes:block>
             <itunes:season>Season one</itunes:season>
