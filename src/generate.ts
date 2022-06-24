@@ -16,7 +16,7 @@ const posts: PostData[] = Object.values(postsData)
 
 const siteData = {
     site: configs.site,
-    posts: posts.sort((a, b) => new Date(a.publishDate).getTime() - new Date(b.publishDate).getTime())
+    posts: posts.sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime())
 }
 
 if (process.argv.length !== 5) {

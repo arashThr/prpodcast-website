@@ -2,17 +2,18 @@
 
 <h1>${ post.title }</h1>
 
-<strong><a href="${ post.repoUrl }">Github repo</a></strong>
-
-${ content }
-
 % if (post.cover) {
 <div class="img-div">
     <img src="${ site.baseurl}${ post.cover }" alt="Cover image">
 </div>
 % }
 
-<br>
+${ content }
+
+<strong><a href="${ post.repoUrl }">Github repo</a></strong>
+
+<hr>
+
 <div>
     Listen to this episode in all podcast platforms:
 
