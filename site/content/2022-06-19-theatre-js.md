@@ -12,9 +12,21 @@ keywords: github, open-source, programming, css
 ---
 
 <p>
-<strong>Theatre.js</strong> is a modern <strong>animation toolbox</strong> for the web.
+Theatre.js is an <strong>animation library for high-fidelity motion graphics</strong>. It is designed to help you express detailed animation, enabling you to create intricate movement, and convey nuance.
 </p>
 
 <p>
-<a href="https://github.com/theatre-js/theatre">Samples</a>
+Theatre can be used both programmatically <i>and</i> visually.
 </p>
+
+<p>
+You can use Theatre.js to:
+<ul>
+<li>Animate 3D objects made with THREE.js or other 3D libraries</li>
+<li>Animate HTML/SVG via React or other libraries</li>
+<li>Design micro-interactions</li>
+<li>Choreograph generative interactive art</li>
+<li>Or animate any other JS variable</li>
+</ul>
+</p>
+
