@@ -44,7 +44,7 @@ build_posts
 build_pages
 
 if [[ $@ > 1 && $1 == 'serve' ]]; then
-    serve -l 20000 $DIST_DIR &
+    npx serve -l 20000 $DIST_DIR &
 
     while true; do
         sleep 1
