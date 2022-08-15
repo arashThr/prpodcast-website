@@ -49,3 +49,4 @@ I tried to build the `dist` on CloudFlare and then serve the directory. For some
 - [ ] Make transformations faster
 - [ ] Parse lists in Front-Matter
 - [X] Install `serve` locally
+- [ ] Remove `.posts_cache.json` from root directory
