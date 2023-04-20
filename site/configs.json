@@ -1,8 +1,8 @@
 {
     "site": {
         "lang": "en",
-        "url": "https://prpodcast.net",
-        "baseurl": "/",
+        "url": "https://prpodcast.nethttps://arashthr.github.io/",
+        "baseurl": "/prpodcast-website/",
         "title": "PR Podcast",
         "tagline": "PR Podcast, open source stories",
         "description": "Interviews with open source project creators and contributors",
