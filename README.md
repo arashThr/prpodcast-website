@@ -7,7 +7,7 @@ In essence, this is a __simple static site generator with no dependencies__.
 - Use `nvm` to make sure you have the right version: `nvm use`
 - Run `npm install` to install Typescript and Node Types
 - Build the project:
-    - `./build.sh` to generate the website in `dist` directory
+    - `./build.sh` to generate the website in `docs` directory
     - `./build.sh test` to run the tests
     - `./build.sh serve` build and serve the website
 
@@ -40,8 +40,8 @@ Posts are in `site/content` directory and their file name should in this format:
 - `publishDate`: Post publish date, from file name
 
 ## Issues
-- Why the `dist` directory is included in the repo?
-I tried to build the `dist` on CloudFlare and then serve the directory. For some reason it didn't work (Couldn't find the pages). I also tried the same thing on Netlify and again, the same problem.
+- Why the `docs` directory is included in the repo?
+I tried to build the `docs` on CloudFlare and then serve the directory. For some reason it didn't work (Couldn't find the pages). I also tried the same thing on Netlify and again, the same problem.
 
 ## TODO
 - [ ] Add Markdown support for posts

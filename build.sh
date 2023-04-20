@@ -4,7 +4,7 @@ set -eu
 
 (command -v node &> /dev/null) || (echo 'Node not found'; exit 1)
 
-DIST_DIR="./dist"
+DIST_DIR="./docs"
 OUT_DIR="./out"
 STATICS_DIR="./site/statics"
 GEN_SCRIPT="generate.js"
