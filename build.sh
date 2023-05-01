@@ -27,7 +27,7 @@ function build_pages () {
     cp -a $STATICS_DIR/. $DIST_DIR/
 
     for file in $(cd $STATICS_DIR; find . -type f | xargs file | grep ASCII | cut -d':' -f1); do
-        echo "Transform page $file"
+        # echo "Transform page $file"
         node $OUT_DIR/$GEN_SCRIPT page $STATICS_DIR/$file $DIST_DIR
     done
 }
@@ -35,7 +35,7 @@ function build_pages () {
 function build_posts () {
     echo 'Generating posts...'
     for file in $(cd $POSTS_DIR; find . -type f -name '*.md'); do
-        echo "Transform post $file"
+        # echo "Transform post $file"
         node $OUT_DIR/$GEN_SCRIPT post $POSTS_DIR/$file $DIST_DIR
     done
 }
@@ -44,7 +44,7 @@ build_posts
 build_pages
 
 if [[ $@ > 1 && $1 == 'serve' ]]; then
-    npx serve -l 20000 $DIST_DIR &
+    node src/server.js $DIST_DIR &
 
     while true; do
         sleep 1
@@ -54,7 +54,7 @@ if [[ $@ > 1 && $1 == 'serve' ]]; then
             build_posts
             build_pages
             echo 'Build is done'
-            # Since we look back 2 seconds, give it some time to past changes
+            # Since we look back 2 seconds, give some time to current changes
             sleep 1
         fi
     done
