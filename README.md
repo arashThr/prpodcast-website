@@ -4,12 +4,12 @@ This is the repo for generating PR podcast website.
 In essence, this is a __simple static site generator with no dependencies__.
 
 ## Run
-- Use `nvm` to make sure you have the right version: `nvm use`
+- Use `nvm` to make sure you have the right version and then use it: `nvm use`
 - Run `npm install` to install Typescript and Node Types
 - Build the project:
     - `./build.sh` to generate the website in `docs` directory
     - `./build.sh test` to run the tests
-    - `./build.sh serve` build and serve the website
+    - `./build.sh serve` build, serve and watch the repo
 
 ## Structure
 All the contents for the website are int `site` directory:
@@ -22,7 +22,7 @@ All the contents for the website are int `site` directory:
 We have our own template engine. Rules are simple:
 - You can write JS code in lines starting with `%`: `% let name = 5`
 - Literal templates (`${}`) are evaluated as JS values: `<p> Hello ${ name }</p>`
-- Special commands:
+- Special commands are:
     - `% include` will add the HTML file from `include` directory.
 
 ### Variables
@@ -44,7 +44,11 @@ Posts are in `site/content` directory and their file name should in this format:
 I tried to build the `docs` on CloudFlare and then serve the directory. For some reason it didn't work (Couldn't find the pages). I also tried the same thing on Netlify and again, the same problem.
 
 ## TODO
-- [ ] Add Markdown support for posts
+- [ ] Update links in header and footer
+- [ ] Deploy with Github actions
+- [ ] `formspree` in configs
+- [ ] Remove TS please
+- [ ] Add proper Markdown support for posts
 - [X] All data defined in Front-Matter should be accessible in the template
 - [ ] Make transformations faster
 - [ ] Parse lists in Front-Matter
