@@ -4,7 +4,6 @@ This is the repo for generating PR podcast website.
 In essence, this is a __simple static site generator with no dependencies__.
 
 ## Run
-- Use `nvm` to make sure you have the right version and then use it: `nvm use`
 - Run `npm install` to install Typescript and Node Types
 - Build the project:
     - `./build.sh` to generate the website in `docs` directory
