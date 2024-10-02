@@ -40,11 +40,11 @@ const server = createServer(async (req, res) => {
   const configs = JSON.parse(configsFile);
 
   const baseUrl = configs.site.baseurl;
+  let fileName = req.url;
   if (req.url.startsWith(baseUrl)) {
-    req.url = req.url.substring(baseUrl.length - 1);
+    fileName = req.url.substring(baseUrl.length - 1);
   }
 
-  let fileName = req.url;
   if (fileName.endsWith("/")) {
     fileName += "index.html";
   } else if (!path.extname(fileName)) {
