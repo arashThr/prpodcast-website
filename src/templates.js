@@ -2,8 +2,13 @@ import * as Post from './post.js'
 import * as fs from "fs/promises"
 import { join, basename, dirname, extname } from 'path'
 
-function xmlEscape(text: string) {
-    const escapes: { [k: string]: string } = {
+/**
+ * Escapes XML special characters in a string.
+ * @param {string} text - The text to escape.
+ * @returns {string} - The escaped text.
+ */
+function xmlEscape(text) {
+    const escapes = {
         '"': '&quot',
         "'": '&apos',
         '<': '&lt',
@@ -14,8 +19,13 @@ function xmlEscape(text: string) {
     return text.toString().replace(re, (c) => escapes[c])
 }
 
-async function getFiles(dir: string): Promise<string[]> {
-    let files: string[] = []
+/**
+ * Recursively gets all files in a directory.
+ * @param {string} dir - The directory to search.
+ * @returns {Promise<string[]>} - A promise that resolves to an array of file paths.
+ */
+async function getFiles(dir) {
+    let files = []
     for (let f of await fs.readdir(dir)) {
         const path = join(dir, f)
         let fileStat = await fs.stat(path)
@@ -28,12 +38,13 @@ async function getFiles(dir: string): Promise<string[]> {
 }
 
 export class TemplateEngine {
-    includes: Map<string, string> = new Map()
-    filePath: string
-
-    constructor(filePath: string) {
+    /**
+     * @param {string} filePath - The file path.
+     */
+    constructor(filePath) {
         // Remove "site/dir" directory from the path
         this.filePath = join(...filePath.split('/').slice(3))
+        this.includes = new Map()
     }
 
     async init() {
@@ -44,7 +55,13 @@ export class TemplateEngine {
         }
     }
 
-    renderHtml(template: string, siteData: object = {}): string {
+    /**
+     * Renders HTML from a template and site data.
+     * @param {string} template - The template string.
+     * @param {object} [siteData={}] - The site data.
+     * @returns {string} - The rendered HTML.
+     */
+    renderHtml(template, siteData = {}) {
         let args = Object.keys(siteData).join()
         let params = Object.values(siteData)
 
@@ -66,7 +83,13 @@ export class TemplateEngine {
         return func(...params)
     }
 
-    private addIncludedHtml(l: string, siteData: object) {
+    /**
+     * Adds included HTML to the output.
+     * @param {string} l - The line containing the include directive.
+     * @param {object} siteData - The site data.
+     * @returns {string} - The code to include the HTML.
+     */
+    addIncludedHtml(l, siteData) {
         let m = l.match(/% include (\S+.html)/)
         if (!m) throw new Error('"Include" matching failed: ' + l)
         const template = this.includes.get(m[1])
@@ -80,15 +103,16 @@ export class TemplateEngine {
  * `PostEngine` is just `TemplateEngine` that also applies __layouts__
  */
 export class PostEngine extends TemplateEngine {
-    layouts: Map<string, string> = new Map()
-
-    constructor(
-        filePath: string,
-        public updateCache = true) {
+    /**
+     * @param {string} filePath - The file path.
+     * @param {boolean} [updateCache=true] - Whether to update the cache.
+     */
+    constructor(filePath, updateCache = true) {
         super(filePath)
+        this.updateCache = updateCache
+        this.layouts = new Map()
     }
 
-    // TODO: Experimental use of parallel run
     async init() {
         await super.init()
         const layoutFiles = (await getFiles('./site/layout')).filter(f => extname(f) === '.html')
@@ -97,23 +121,36 @@ export class PostEngine extends TemplateEngine {
             p.push(new Promise(resolve => {
                 resolve(fs.readFile(f, 'utf-8'))
             }).then(content => {
-                this.layouts.set(basename(f, '.html'), content as string)
+                this.layouts.set(basename(f, '.html'), content)
             }))
         }
         await Promise.all(p)
     }
 
-    private getLayout(layoutName: string): string {
+    /**
+     * Gets the layout by name.
+     * @param {string} layoutName - The layout name.
+     * @returns {string} - The layout content.
+     */
+    getLayout(layoutName) {
         const layout = this.layouts.get(layoutName)
         if (!layout) throw new Error(`${layoutName} layout is undefined`)
         return layout
     }
 
-    renderPost(content: string, siteData: object): [postHtml: string, postData: Post.FrontMatter, postPath: string] {
+    /**
+     * Renders a post with the given content and site data.
+     * @param {string} content - The post content.
+     * @param {object} siteData - The site data.
+     * @returns {[string, FrontMatter, string]} - The rendered post HTML, post data, and post path.
+     */
+    renderPost(content, siteData) {
         const [date, fileName] = Post.parsePostFileName(this.filePath)
         const url = join(dirname(this.filePath), fileName)
         const [fms, postTemplate] = Post.getSections(content)
         const postData = Post.parseFrontMatter(fms, date, fileName)
+
+        // TODO: Apply markdowns
         // const postTemplate = Post.convertMarkdown(mds)
 
         let data = Object.assign({post: postData}, siteData)

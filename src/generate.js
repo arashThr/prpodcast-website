@@ -8,11 +8,8 @@ let configs = JSON.parse(await fs.readFile('./site/configs.json', 'utf-8'))
 const postsCacheFile = '.posts_cache.json'
 
 const cacheFile = await fs.open(postsCacheFile, 'a+')
-type PostData = {
-    [key: string]: string
-}
 const postsData = JSON.parse(await cacheFile.readFile('utf-8') || '{}')
-const posts: PostData[] = Object.values(postsData)
+const posts = Object.values(postsData)
 
 const siteData = {
     site: configs.site,
@@ -24,7 +21,7 @@ if (process.argv.length !== 5) {
     process.exit(1)
 }
 
-async function writeContent(filePath: string, content: string) {
+async function writeContent(filePath, content) {
     const dir = dirname(filePath)
     try {
         await fs.access(dir)

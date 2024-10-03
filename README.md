@@ -46,7 +46,7 @@ I tried to build the `docs` on CloudFlare and then serve the directory. For some
 - [ ] Update links in header and footer
 - [ ] Deploy with Github actions
 - [ ] `formspree` in configs
-- [ ] Remove TS please
+- [X] Remove TS please
 - [ ] Add proper Markdown support for posts
 - [X] All data defined in Front-Matter should be accessible in the template
 - [ ] Make transformations faster

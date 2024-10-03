@@ -1,12 +1,10 @@
-export type FrontMatter = {
-    [k: string]: string | undefined
-    layout: string
-    title: string
-    publishDate: string
-    url: string
-}
-
-export function convertMarkdown(md: string) {
+/**
+ * Converts markdown to HTML.
+ * 
+ * @param {string} md - The markdown string to convert.
+ * @returns {string} - The converted HTML string.
+ */
+export function convertMarkdown(md) {
     return md
         .replaceAll(/\!\[(.*?)\]\((.*?)\)/g, '<img src="$2" alt="$1">')
         .replaceAll(/\[(.*?)\]\((.*?)\)/g, '<a href="$2">$1</a>')
@@ -17,8 +15,15 @@ export function convertMarkdown(md: string) {
         .replaceAll(/^\s*### (.*)/g, '<h3>$1</h3>')
 }
 
-export function parseFrontMatter(fms: string, publishDate: string, url: string): FrontMatter {
-    const fmm = new Map<string, string>()
+
+/**
+ * @param {string} fms
+ * @param {string} publishDate
+ * @param {string} url
+ * @returns {FrontMatter}
+ */
+export function parseFrontMatter(fms, publishDate, url) {
+    const fmm = new Map()
     for (let kv of fms
         .split('\n')
         .filter(l => l.trim() != '')
@@ -32,7 +37,7 @@ export function parseFrontMatter(fms: string, publishDate: string, url: string):
         console.error('Some required fields are missing from FrontMatter', fms)
         throw new Error('Missing fields')
     }
-    const fm: FrontMatter = {
+    const fm = {
         layout, title, url, publishDate
     }
     for (let [k, v] of fmm.entries())
@@ -41,7 +46,13 @@ export function parseFrontMatter(fms: string, publishDate: string, url: string):
     return fm
 }
 
-export function getSections(content: string): [fms: string, mds: string] {
+/**
+ * Extracts the front matter and markdown sections from the content.
+ * 
+ * @param {string} content - The content string to parse.
+ * @returns {[string, string]} - An array containing the front matter string and the markdown string.
+ */
+export function getSections(content) {
     if (!content.trim().startsWith('---'))
         throw new Error('There is no YAML front matter: ' + content)
 
@@ -65,7 +76,13 @@ export function getSections(content: string): [fms: string, mds: string] {
     return [fms.trim(), mds.trim()]
 }
 
-export function parsePostFileName(fileName: string): [string, string] {
+/**
+ * Parses the post file name to extract the date and title.
+ * 
+ * @param {string} fileName - The file name to parse.
+ * @returns {[string, string]} - An array containing the date and title.
+ */
+export function parsePostFileName(fileName) {
     const m = fileName.match(/(\d{4}-\d{2}-\d{2})-(.*)\.md/)
     if (!m)
         throw new Error('File name structure is incorrect: yyyy-mm-dd-Title.md')

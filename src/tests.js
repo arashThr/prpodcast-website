@@ -35,16 +35,17 @@ markdown.runTests(
 )
 
 class RenderTest extends TestSuite {
-    engine: TemplateEngine
+    /**
+     * @param {string} desc
+     * @param {string} [filePath='template.html']
+     */
+    constructor(desc, filePath = 'template.html') {
+        super(desc)
+        this.filePath = filePath
+        this.engine = new TemplateEngine(this.filePath)
+    }
 
-    constructor(
-        desc: string,
-        public filePath: string = 'template.html') {
-            super(desc)
-            this.engine = new TemplateEngine(this.filePath)
-        }
-
-    setup(): void {
+    setup() {
         this.engine = new TemplateEngine(this.filePath)
     }
 }
@@ -98,27 +99,25 @@ templateTests.runTests(
 )
 
 class ParsePostTest extends TestSuite {
-    dateString = '2022-05-07'
-    title = 'Post Title'
-    filePath: string
-    dir = '/content/posts'
-
-    layout = 'episode'
-    duration = '1:30'
-    size = '100'
-    audioUrl = 'https://site.com'
-    summary = 'Summary of the post'
-    cover = '/img/cover.jpg'
-    postPath = 'my_post'
-
-    fms: string
-    mds: string
-    fullPost: string
-    fm: Post.FrontMatter
-
-    constructor(desc: string) {
+    /**
+     * @param {string} desc
+     */
+    constructor(desc) {
         super(desc)
         this.filePath = this.dir + '/' + this.dateString + '-' + this.postPath + '.md'
+
+        this.dateString = '2022-05-07'
+        this.title = 'Post Title'
+        this.filePath
+        this.dir = '/content/posts'
+
+        this.layout = 'episode'
+        this.duration = '1:30'
+        this.size = '100'
+        this.audioUrl = 'https://site.com'
+        this.summary = 'Summary of the post'
+        this.cover = '/img/cover.jpg'
+        this.postPath = 'my_post'
 
         this.fms =
         `layout: ${this.layout}
@@ -135,6 +134,7 @@ class ParsePostTest extends TestSuite {
 
         this.fullPost = `---\n${this.fms}\n---\n${this.mds}`
 
+        /** @type {FrontMatter} */
         this.fm = {
             layout: this.layout,
             title: this.title,
