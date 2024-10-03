@@ -6,7 +6,7 @@ set -eu
 
 DIST_DIR="./docs"
 STATICS_DIR="./site/statics"
-GEN_SCRIPT="src/generate.js"
+GEN_SCRIPT="./src/generate.js"
 POSTS_DIR="./site/content"
 
 if [[ $@ > 1 && $1 == 'test' ]]; then

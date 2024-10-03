@@ -8,9 +8,5 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Arash Thr",
-  "license": "ISC",
-  "dependencies": {
-    "@types/node": "^18.0.0",
-    "typescript": "^4.7.4"
-  }
+  "license": "ISC"
 }

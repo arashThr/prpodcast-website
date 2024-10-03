@@ -4,17 +4,17 @@ This is the repo for generating PR podcast website.
 In essence, this is a __simple static site generator with no dependencies__.
 
 ## Run
-- Run `npm install` to install Typescript and Node Types
-- Build the project:
-    - `./build.sh` to generate the website in `docs` directory
-    - `./build.sh test` to run the tests
+- Make sure you have `node` installed - No need to run `npm install`
+- Build your website:
     - `./build.sh serve` build, serve and watch the repo
+    - `./build.sh test` to run the tests
+    - `./build.sh` to generate the website in `docs` directory
 
 ## Structure
 All the contents for the website are int `site` directory:
 - `content`: Markdown files for posts
-- `static`: Static files, which can have templates (TODO: Rename)
-- `layout`: Layouts that can be used in posts
+- `static`: Static files, which can have templates
+- `layout`: Layouts that can be reused in posts and pages
 - `include`: Partial HTML files that can be included in other HTML files
 
 ## Templates
@@ -25,7 +25,7 @@ We have our own template engine. Rules are simple:
     - `% include` will add the HTML file from `include` directory.
 
 ### Variables
-- In every page you have access to all the values defined `config.json` file: `${ site.title }`
+- In every page you have access to all the values defined `config.json` file, e.g. `${ site.title }`
 
 #### Pages
 All the files in static directory are pages. They have access to:
@@ -46,6 +46,7 @@ I tried to build the `docs` on CloudFlare and then serve the directory. For some
 - [ ] Update links in header and footer
 - [ ] Deploy with Github actions
 - [ ] `formspree` in configs
+- [ ] Rename `static` dir - Pages are there too
 - [X] Remove TS please
 - [ ] Add proper Markdown support for posts
 - [X] All data defined in Front-Matter should be accessible in the template
