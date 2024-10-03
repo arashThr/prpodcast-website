@@ -1,7 +1,7 @@
 {
     "site": {
         "lang": "en",
-        "url": "https://prpodcast.nethttps://arashthr.github.io/",
+        "url": "https://arashthr.github.io",
         "baseurl": "/prpodcast-website/",
         "title": "PR Podcast",
         "tagline": "PR Podcast, open source stories",
@@ -10,7 +10,7 @@
         "redirect": "",
         "author": "Arash Taher, Mehdi Moozeh",
         "owner": {
-            "name": "Arash Taher",
+            "name": "Arash Thr",
             "email": "arashThr@outlook.com"
         }
     }

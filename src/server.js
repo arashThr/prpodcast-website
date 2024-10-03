@@ -68,12 +68,10 @@ const server = createServer(async (req, res) => {
 });
 
 async function respond404(res) {
-  res.writeHead(404);
   const filePath = path.join(staticsDir, "404.html");
   const data = await readFile(filePath);
-  res.writeHead(200, { "Content-Type": "text/html" });
-  res.write(data);
-  res.end();
+  res.writeHead(404, { "Content-Type": "text/html" });
+  res.end(data);
 }
 
 server.listen(port, () => {
