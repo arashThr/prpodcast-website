@@ -46,6 +46,7 @@ I tried to build the `docs` on CloudFlare and then serve the directory. For some
 - [ ] Update links in header and footer
 - [ ] Deploy with Github actions
 - [ ] `formspree` in configs
+- [ ] Add Tailwind
 - [ ] Rename `static` dir - Pages are there too
 - [X] Remove TS please
 - [ ] Add proper Markdown support for posts
