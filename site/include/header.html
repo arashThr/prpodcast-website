@@ -1,42 +1,51 @@
 <!doctype html>
-<html lang="en">
-
+<html lang="${ site.lang }">
 <head>
   <meta charset="utf-8">
-  <title></title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>${ site.title } – ${ site.tagline }</title>
+  <meta name="description" content="${ site.description }">
+  <meta name="keywords" content="${ site.keywords }">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="author" content="${ site.author }">
+  <link rel="canonical" href="${ site.url }${ site.baseurl }">
 
-  <meta property="og:title" content="">
-  <meta property="og:type" content="">
-  <meta property="og:url" content="">
-  <meta property="og:image" content="">
+  <!-- Open Graph -->
+  <meta property="og:title" content="${ site.title }">
+  <meta property="og:description" content="${ site.description }">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="${ site.url }${ site.baseurl }">
+  <meta property="og:image" content="${ site.url }${ site.baseurl }img/PR/logo.png">
+  <meta property="og:site_name" content="${ site.title }">
 
-  <link rel="apple-touch-icon" href="icon.png">
-  <link rel="alternate" type="application/rss+xml" href="https://prpodcast.net/podcast.rss" />
-  <!-- Place favicon.ico in the root directory -->
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${ site.title }">
+  <meta name="twitter:description" content="${ site.description }">
+  <meta name="twitter:image" content="${ site.url }${ site.baseurl }img/PR/logo.png">
+
+  <link rel="alternate" type="application/rss+xml" href="${ site.url }${ site.baseurl }podcast.rss" />
+  <link rel="apple-touch-icon" href="${ site.baseurl }icon.png">
+  <link rel="icon" type="image/png" href="${ site.baseurl }favicon.ico">
 
   <link rel="stylesheet" href="${ site.baseurl }css/main.css">
   <link rel="stylesheet" href="${ site.baseurl }css/custom.css">
-
-  <meta name="theme-color" content="#fafafa">
+  <!-- Brutalist theme: no color-scheme alternates, no client-side theming script -->
 </head>
-
 <body>
-
-  <div class="main">
-    <div class="site-header">
-        <a href="${ site.baseurl }">
-          <img src="${ site.baseurl }img/PR/logo-small.png" alt="PR Podcast" class="site-logo">
-        </a>
-        <a href="${ site.baseurl }">
-          <img src="${ site.baseurl }img/PR/open-source.png" alt="PR Podcast" class="site-logo" style="max-width: 200px;">
-        </a>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <header class="site-topbar">
+    <div class="container nav-inner">
+      <a href="${ site.baseurl }" class="brand" aria-label="${ site.title } home">
+        <img src="${ site.baseurl }img/PR/logo-small.png" alt="${ site.title } logo" loading="lazy">
+        <span>${ site.title }</span>
+      </a>
+  <nav class="primary-nav" aria-label="Primary navigation">
+        <ul>
+          <li><a href="${ site.baseurl }about.html">About</a></li>
+          <li><a href="${ site.baseurl }podcast.rss">RSS</a></li>
+          <li><a href="https://github.com/arashThr/prpodcast-website/">GitHub</a></li>
+        </ul>
+      </nav>
     </div>
-    <hr>
-    <nav>
-      <ul>
-          <li><a href ="${ site.baseurl }about.html">About</a></li>
-      </ul>
-    </nav>
-    <hr>
+  </header>
+  <main id="main" class="main" tabindex="-1">

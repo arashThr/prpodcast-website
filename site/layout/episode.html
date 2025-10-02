@@ -1,30 +1,34 @@
 % include header.html
 
-<h1>${ post.title }</h1>
+<article>
+    <h1>${ post.title }</h1>
 
-% if (post.cover) {
-<div class="img-div">
-    <img src="${ site.baseurl }${ post.cover }" alt="Cover image">
-</div>
-% }
+    % if (post.cover) {
+    <div class="img-div">
+            <img src="${ site.baseurl }${ post.cover }" alt="Cover image">
+    </div>
+    % }
 
-${ content }
+    <div class="content-body">
+        ${ content }
+    </div>
 
-<strong><a href="${ post.repoUrl }">Github repo</a></strong>
+    % if (post.repoUrl) {
+    <p><strong>Repository:</strong> <a href="${ post.repoUrl }">${ post.repoUrl }</a></p>
+    % }
 
-<hr>
-
-<div>
-    Listen to this episode in all podcast platforms:
-
-    % include badges.html
-
-    or listen to this episode directly here:
-    <audio controls>
-        <source src="${ post.audioUrl }" type="audio/mpeg">
-        Your browser does not support the audio tag.
-    </audio>
-</div>
-
+    <section style="border: var(--border-thick); padding: var(--rhythm); margin-top: var(--rhythm-lg);">
+        <h2>Listen</h2>
+        <p>Available on major platforms:</p>
+        <div class="image-line svg-badge">
+            % include badges.html
+        </div>
+        <p style="margin-top: var(--rhythm); font-weight:700;">Direct Audio</p>
+        <audio controls style="width:100%;">
+            <source src="${ post.audioUrl }" type="audio/mpeg">
+            Your browser does not support the audio tag.
+        </audio>
+    </section>
+</article>
 
 % include footer.html

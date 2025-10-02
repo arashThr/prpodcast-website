@@ -1,56 +1,60 @@
 % include header.html
 
-    <section>
-      <header>
-        <h1>Welcome to PR Podcast</h1>
-      </header>
-
-      <p>PR podcast is an <strong>interview podcast with open source creators</strong>.</p>
-
-      <p>You can listen to each episode in podcast applications or in our <a href="https://t.me/prpodcast">Telegram channel</a>
-
-      % include badges.html
-
-      <p>
-        For updates and news, follow Arash on <a href="https://twitter.com/rshthr/">Twitter</a> or subscribe to our <a href="#mailing-list">mailing list</a>.
-      </p>
+    <section class="intro-box" aria-label="Intro">
+      <h1>${ site.title }</h1>
+      <p class="tagline">Interview podcast with open source creators & contributors.</p>
+      <p>We talk about real pull requests, design trade-offs, community friction, and the decisions that shipped the project you use (or should try). No fluff. Just how it was built.</p>
+      <div class="image-line svg-badge">
+        % include badges.html
+      </div>
+      <div style="margin-top: var(--rhythm); display:flex; gap: var(--rhythm); flex-wrap:wrap;">
+        <a href="#episodes" class="btn btn-primary">Episodes</a>
+        <a href="#mailing-list" class="btn btn-secondary">Mailing List</a>
+        <a href="https://t.me/prpodcast" class="btn btn-secondary" rel="noopener" target="_blank">Telegram</a>
+      </div>
     </section>
 
-    <section class="episodes">
-      <header>
-        <h2>List of episodes</h2>
-      </header>
+    <section class="episodes" id="episodes" aria-label="Episodes list">
+      <h2>Episodes (${ posts.length })</h2>
       <ul class="ep-listing">
-
       % for (let ep of posts) {
-        <li class="episode">
-          <div class="ep-title">
-            <a href="${ site.baseurl }${ep.url}"><code>${ ep.title }</code></a>
-            <hr class="hr-list">
-            <time class="time publish-date">${ new Date(ep.publishDate).toDateString() }</time>
-          </div>
-          <div class="ep-desc">
-            ${ep.summary}
-          </div>
+        <li>
+        <a class="episode-card" href="${ site.baseurl }${ep.url}.html" aria-label="Episode: ${ ep.title }">
+          <div class="episode">
+              <div class="ep-title">
+                <span class="ep-name">${ ep.title }</span>
+                <time class="publish-date" datetime="${ new Date(ep.publishDate).toISOString() }">${ new Date(ep.publishDate).toDateString() }</time>
+              </div>
+              <div class="ep-desc">${ep.summary}</div>
+            </div>
+        </a>
         </li>
-        % }
-
+      % }
       </ul>
     </section>
-      
-    <div style="text-align: center;">
-      <h3 id="mailing-list">Mailing list</h3>
-      <p>Subscribe to our mailing list to receive an email after each episode is published.</p>
-      <div class="email-form">
-          <form action="https://formspree.io/f/xdobbnyg" method="POST">
-          <input type="text" class="textField" id="email-addr" name="email-addr" onclick="clearEmail()" placeholder="Email">
-          <input type="submit" class="btn" id="subscribe-button" value="Subscribe">
-        </form>
-      </div>
-    </div>
 
-    <div style="display: flex; justify-content: center; margin-top: 2rem;">
-      <iframe src="https://embed.podcasts.apple.com/us/podcast/pr-podcast/id1624505714?itsct=podcast_box_player&amp;itscg=30200&amp;ls=1&amp;theme=auto" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" allow="autoplay *; encrypted-media *;" style="width: 100%; max-width: 660px; overflow: hidden; border-radius: 10px; background: transparent none repeat scroll 0% 0%;" height="450px" frameborder="0"></iframe>
-    </div>
+    <section style="margin-top: var(--rhythm-lg);">
+      <h2 id="mailing-list">Mailing List</h2>
+      <p>Short email when a new episode ships. Plain text. Unsubscribe anytime.</p>
+      <div class="email-form">
+        <form method="POST" action="https://7c1bfe29.sibforms.com/serve/MUIFAGWoa__8rBJrFUoryyMZssnvzR4tV0vz4k7R8I8wWEdDtcQyz0bbRGU-Fsifk7qlKyC0wmt0m4J9KHAWNGzTq1YGnBVNq0zuwrnuEkx_Fq5TfVsNC6jOpMi2Ra1DRVXpMK75CLGJ9N4hYP9d3GLWTa37ISNJmA721-8v2SZG6PFKz0j_4XR8n-7ADF0cLCQrHN0ZqBA73llb" style="display: flex; gap: var(--rhythm-sm); align-items: flex-start; flex-wrap: wrap;">
+          <div>
+          <input style="margin-bottom: 1rem; width: 300px;" type="email" name="EMAIL" placeholder="Email address" required class="textField">
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAABq9VC45HHYat6Mp" data-language="en"></div>
+          </div>
+          <button type="submit" class="btn btn-primary">Subscribe</button>
+          <input type="text" name="email_address_check" value="" style="display: none;">
+          <input type="hidden" name="locale" value="en">
+        </form>
+        <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+      </div>
+
+    </section>
+    <section>
+      <h2>Apple Podcasts</h2>
+      <div style="border: var(--border-thick); padding: var(--rhythm);">
+        <iframe title="Apple Podcasts embed" src="https://embed.podcasts.apple.com/us/podcast/pr-podcast/id1624505714?itsct=podcast_box_player&amp;itscg=30200&amp;ls=1&amp;theme=auto" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" allow="autoplay *; encrypted-media *;" style="width:100%; max-width: 760px; height:450px; display:block; border:0;" loading="lazy"></iframe>
+      </div>
+    </section>
 
 % include footer.html
