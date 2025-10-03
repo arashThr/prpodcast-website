@@ -3,7 +3,7 @@
     <section class="intro-box" aria-label="Intro">
       <h1>${ site.title }</h1>
       <p class="tagline">Interview podcast with open source creators & contributors.</p>
-      <p>We talk about real pull requests, design trade-offs, community friction, and the decisions that shipped the project you use (or should try). No fluff. Just how it was built.</p>
+      <p>Let's dive into the code with the creators on open source project. We talk about the problem they're trying solve, how they came up with a solution, and the challenges of forming a community with a similar vision</p>
       <div class="image-line svg-badge">
         % include badges.html
       </div>
@@ -16,21 +16,18 @@
 
     <section class="episodes" id="episodes" aria-label="Episodes list">
       <h2>Episodes (${ posts.length })</h2>
-      <ul class="ep-listing">
+      <div class="ep-grid">
       % for (let ep of posts) {
-        <li>
         <a class="episode-card" href="${ site.baseurl }${ep.url}.html" aria-label="Episode: ${ ep.title }">
-          <div class="episode">
-              <div class="ep-title">
-                <span class="ep-name">${ ep.title }</span>
-                <time class="publish-date" datetime="${ new Date(ep.publishDate).toISOString() }">${ new Date(ep.publishDate).toDateString() }</time>
-              </div>
-              <div class="ep-desc">${ep.summary}</div>
-            </div>
+          <div class="ep-number">#${ posts.indexOf(ep) + 1 }</div>
+          <div class="ep-content">
+            <h3 class="ep-name">${ ep.title }</h3>
+            <time class="publish-date" datetime="${ new Date(ep.publishDate).toISOString() }">${ new Date(ep.publishDate).toDateString() }</time>
+            <p class="ep-desc">${ep.summary}</p>
+          </div>
         </a>
-        </li>
       % }
-      </ul>
+      </div>
     </section>
 
     <section style="margin-top: var(--rhythm-lg);">
@@ -52,7 +49,7 @@
     </section>
     <section>
       <h2>Apple Podcasts</h2>
-      <div style="border: var(--border-thick); padding: var(--rhythm);">
+      <div style="padding: var(--rhythm);">
         <iframe title="Apple Podcasts embed" src="https://embed.podcasts.apple.com/us/podcast/pr-podcast/id1624505714?itsct=podcast_box_player&amp;itscg=30200&amp;ls=1&amp;theme=auto" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" allow="autoplay *; encrypted-media *;" style="width:100%; max-width: 760px; height:450px; display:block; border:0;" loading="lazy"></iframe>
       </div>
     </section>
