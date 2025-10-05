@@ -1,14 +1,14 @@
 {
     "site": {
         "lang": "en",
-        "url": "https://arashthr.github.io",
-        "baseurl": "/prpodcast-website/",
+        "url": "https://prpodcast.arashtaher.com",
+        "baseurl": "/",
         "title": "PR Podcast",
         "tagline": "PR Podcast, open source stories",
         "description": "Interviews with open source project creators and contributors",
         "keywords": "open source, interview, programming",
         "redirect": "",
-        "author": "Arash Taher, Mehdi Moozeh",
+        "author": "Arash Taher",
         "owner": {
             "name": "Arash Thr",
             "email": "arashThr@outlook.com"
